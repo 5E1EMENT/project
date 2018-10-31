@@ -47,11 +47,16 @@ body {
 .logo-desc {	
 	text-align: center;
 }
-.mainscreen-logo {
+.logo-wrapper {
 	width: 80px;
 	height: 80px;
 	position: absolute;
-	left: 0;
+	left: 5%;
+}
+.mainscreen-logo {
+	width: 80px;
+	height: 80px;
+
 	
 }
 .mainscreen-description {
@@ -63,7 +68,7 @@ body {
 	color: brown;
 	text-transform: uppercase;
 	font-family: Kabel;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 	text-shadow: 1px 1px 0 black, -1px -1px 0 black;
 
 } /* Контент*/

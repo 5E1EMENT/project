@@ -21,42 +21,42 @@ $(document).ready(function(){
         var d = $('#d').text();
         if(nhole == '')
         {
-            alert("Enter hole number");
+            alert("Введите номер скважины");
             return false;
         }
         if(nfield == '')
         {
-            alert("Enter field number");
+            alert("Введите номер месторождения");
             return false;
         }
         if(x == '')
         {
-            alert("Enter X coordinate");
+            alert("Введите Х координату");
             return false;
         }
         if(y == '')
         {
-            alert("Enter Y coordinate");
+            alert("Введите Y координату");
             return false;
         }
         if(z == '')
         {
-            alert("Enter Z coordinate");
+            alert("Введите Z координату");
             return false;
         }
         if(a == '')
         {
-            alert("Enter Alfa angle");
+            alert("Введите угол альфа");
             return false;
         }
         if(b == '')
         {
-            alert("Enter B angle");
+            alert("Введите угол бета");
             return false;
         }
         if(d == '')
         {
-            alert("Enter depth(d)");
+            alert("Введите глубину месторождения");
             return false;
         }
         $.ajax({
@@ -127,7 +127,7 @@ $(document).ready(function(){
     });
     $(document).on('click', '.btn_delete', function(){
         var id=$(this).data("id9");
-        if(confirm("Are you sure you want to delete this?"))
+        if(confirm("Вы уверены, что хотите удалить скважину?"))
         {
             $.ajax({
                 url:"/pages/php/chink/delete.php",
