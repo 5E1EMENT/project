@@ -34,4 +34,16 @@ body {
     border-bottom: 5px solid black;
 
 }
-
+.mainscreen-logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 3%;
+    top: 10px;
+}
+th {
+    border: 1px solid black !important;
+}
+td {
+    border: 1px solid black !important;
+}

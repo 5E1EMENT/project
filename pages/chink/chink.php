@@ -11,7 +11,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,15 +21,20 @@
     <![endif]-->
   </head>
   <body>
+  <a href="http://nikitasdv.ru/">
+  <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
+  </a>
   <div class="wrapper">
+
     <h1 class="title">Скважины</h1>
     </div>
-	
-	<?php
-    require_once '../php/chink.php';
-    ?>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <span id="result"></span>
+          <div id="live_data"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/script.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
   </body>

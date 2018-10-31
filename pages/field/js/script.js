@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
     $('#form_field').submit(function() { // проверка на пустоту заполненных полей. Атрибут html5 — required не подходит (не поддерживается Safari)
-
+    // $('.table_field').load("/pages/php/field.php");
 
         // $.ajax({
         //     type: "GET",
