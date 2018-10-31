@@ -1,0 +1,5 @@
+@media (max-height: 632px) {
+  .content-item {
+	  height: 150px;
+  }
+}

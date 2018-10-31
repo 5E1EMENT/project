@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../../../img/congruent_outline.png') center center ;
+    -webkit-background-size: 20%;
+    background-size: 20%;
+}
+.wrapper {
+    width:100%;
+    padding: 10px 0;
+    background: url('../../../img/congruent_outline.png') center center ;
+    -webkit-background-size: 20%;
+    background-size: 20%;
+}
+.table {
+    width: 80vw !important;
+    background: gray !important;
+    text-align: center;
+}
+.title {
+    font-size: 36px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: brown;
+    text-transform: uppercase;
+    font-family: Kabel;
+
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+    padding-bottom: 10px;
+    border-bottom: 5px solid black;
+
+}
+
