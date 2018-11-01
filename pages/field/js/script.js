@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     function fetch_data()
     {
         $.ajax({
@@ -21,42 +22,97 @@ $(document).ready(function(){
         var w = $('#w').text();
         if(nfield == '')
         {
-            alert("Введите номер месторождения");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите номер месторождения'
+            }).show();
             return false;
         }
         if(namefield == '')
         {
-            alert("Введите имя месторождения");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите имя месторождения'
+            }).show();
             return false;
         }
         if(x == '')
         {
-            alert("Введите Х координату");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Х координату'
+            }).show();
             return false;
         }
         if(y == '')
         {
-            alert("Введите Y координату");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Y координату'
+            }).show();
             return false;
         }
         if(z == '')
         {
-            alert("Введите Z координату");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Z координату'
+            }).show();
             return false;
         }
         if(l == '')
         {
-            alert("Введите длину месторождения");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите длину месторождения'
+            }).show();
             return false;
         }
         if(d == '')
         {
-            alert("Введите глубину месторождения");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите глубину месторождения'
+            }).show();
             return false;
         }
         if(w == '')
         {
-            alert("Введите ширину месторождения");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите ширину месторождения'
+            }).show();
             return false;
         }
         $.ajax({
@@ -66,7 +122,13 @@ $(document).ready(function(){
             dataType:"text",
             success:function(data)
             {
-                alert(data);
+                new Noty({
+                    theme: 'nest',
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 5000,
+                    text: data
+                }).show();
                 fetch_data();
             }
         })
@@ -81,7 +143,14 @@ $(document).ready(function(){
             dataType:"text",
             success:function(data){
                 //alert(data);
-                $('#result').html("<div class='alert alert-success'>"+data+"</div>");
+                //$('#result').html("<div class='alert alert-success'>"+data+"</div>");
+                new Noty({
+                    theme: 'nest',
+                    type: 'info',
+                    layout: 'topRight',
+                    timeout: 4000,
+                    text: data
+                }).show();
             }
         });
     }
@@ -135,7 +204,13 @@ $(document).ready(function(){
                 data:{id:id},
                 dataType:"text",
                 success:function(data){
-                    alert(data);
+                    new Noty({
+                        theme: 'nest',
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 3000,
+                        text: data
+                    }).show();
                     fetch_data();
                 }
             });

@@ -12,8 +12,11 @@
     <link href="../field/css/fonts.css" rel="stylesheet">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+      <link href="lib/themes/nest.css" rel="stylesheet">
+
+      <link href="lib/noty.css" rel="stylesheet">
+
 
   </head>
   <body>
@@ -25,11 +28,15 @@
 
       <h1 class="title">Месторождение</h1>
   </div>
-  <span id="result"></span>
+
   <div id="live_data"></div>
 
-
+  <!--IE scripts-->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <!--Main scripts-->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="lib/noty.min.js" type="text/javascript"></script>
   <script src="js/script.js"></script>
 
   </body>

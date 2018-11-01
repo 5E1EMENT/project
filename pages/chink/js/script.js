@@ -21,42 +21,91 @@ $(document).ready(function(){
         var d = $('#d').text();
         if(nhole == '')
         {
-            alert("Введите номер скважины");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите номер скважины'
+            }).show();
             return false;
         }
         if(nfield == '')
         {
-            alert("Введите номер месторождения");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите номер месторождения'
+            }).show();
             return false;
         }
         if(x == '')
         {
-            alert("Введите Х координату");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Х координату'
+            }).show();
             return false;
         }
         if(y == '')
         {
-            alert("Введите Y координату");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Y координату'
+            }).show();
             return false;
         }
         if(z == '')
         {
-            alert("Введите Z координату");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите Z координату'
+            }).show();
             return false;
         }
         if(a == '')
         {
-            alert("Введите угол альфа");
+
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите угол альфа'
+            }).show();
             return false;
         }
         if(b == '')
         {
-            alert("Введите угол бета");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите угол бета'
+            }).show();
             return false;
         }
         if(d == '')
         {
-            alert("Введите глубину месторождения");
+            new Noty({
+                theme: 'nest',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 3000,
+                text: 'Введите глубину скважины'
+            }).show();
             return false;
         }
         $.ajax({
@@ -66,7 +115,13 @@ $(document).ready(function(){
             dataType:"text",
             success:function(data)
             {
-                alert(data);
+                new Noty({
+                    theme: 'nest',
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 5000,
+                    text: data
+                }).show();
                 fetch_data();
             }
         })
@@ -81,7 +136,14 @@ $(document).ready(function(){
             dataType:"text",
             success:function(data){
                 //alert(data);
-                $('#result').html("<div class='alert alert-success'>"+data+"</div>");
+                //$('#result').html("<div class='alert alert-success'>"+data+"</div>");
+                new Noty({
+                    theme: 'nest',
+                    type: 'info',
+                    layout: 'topRight',
+                    timeout: 4000,
+                    text: data
+                }).show();
             }
         });
     }
@@ -135,7 +197,13 @@ $(document).ready(function(){
                 data:{id:id},
                 dataType:"text",
                 success:function(data){
-                    alert(data);
+                    new Noty({
+                        theme: 'nest',
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 3000,
+                        text: data
+                    }).show();
                     fetch_data();
                 }
             });
