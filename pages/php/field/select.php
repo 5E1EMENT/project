@@ -47,9 +47,9 @@
                      <td class="l" data-id6="'.$row["id"].'" data-label="Длина" contenteditable>'.$row["l"].'</td>
                      <td class="d" data-id7="'.$row["id"].'" data-label="Глубина" contenteditable>'.$row["d"].'</td>
                      <td class="w" data-id8="'.$row["id"].'" data-label="Ширина" contenteditable>'.$row["w"].'</td>
-                     <td class="kern" data-id8="'.$row["id"].'" data-label="Керны" contenteditable><button type="button" name="btn_add_kern" id="btn_add_kern" class="btn btn-xs btn-success">+</button></td>
-                     <td class="doc" data-id8="'.$row["id"].'" data-label="Документы" contenteditable><button type="button" name="btn_add_doc" id="btn_add_doc" class="btn btn-xs btn-success">+</button></td>
-                     <td><button type="button" name="delete_btn" data-id9="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
+                     <td class="kern" data-id8="'.$row["id"].'" data-label="Керны" ><button type="button" name="btn_add_kern" id="btn_add_kern" class="btn btn-xs btn-success">+</button></td>
+                     <td class="doc" data-id8="'.$row["id"].'" data-label="Документы" ><button type="button" name="btn_add_doc" id="btn_add_doc" class="btn btn-xs btn-success">+</button></td>
+                     <td data-label="Удалить"><button type="button" name="delete_btn" data-id9="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
                 </tr>
 
            ';  
@@ -67,7 +67,7 @@
                 <td id="w" contenteditable></td>
                 <td id="kern" contenteditable></td>
                 <td id="doc" contenteditable></td>
-                <td><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
+                <td data-label="Добавить"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
            </tr>  
       ';  
  }  
@@ -86,7 +86,7 @@
                                     <td id="w" contenteditable></td>
                                     <td id="kern" contenteditable></td>
                                     <td id="doc" contenteditable></td>
-					<td><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
+					<td data-label="Добавить"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
 			   </tr>';  
  }  
  $output .= '</tbody></table>
