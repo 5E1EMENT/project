@@ -1,5 +1,15 @@
-@media (max-height: 632px) {
+@media screen and (max-height: 632px) {
   .content-item {
 	  height: 150px;
   }
+}
+@media screen and (max-width: 991px) {
+    html{
+        height: auto;
+    }
+    .content-item {
+        width: 600px;
+        height: 40vh;
+    }
+
 }

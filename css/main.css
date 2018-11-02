@@ -13,14 +13,18 @@ body {
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	min-height: 100%;
+
 }
 .mainscreen {
-	
-	padding: 10px;
+	flex-grow: 1;
+
 	background: url('../img/congruent_outline.png') center center ;
 	-webkit-background-size: 20%;
 	background-size: 20%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
 }
 .mainscreen-container{
 	display: -webkit-flex;
@@ -33,6 +37,9 @@ body {
 	align-items: center;
 	position: relative;
 	
+}
+.mainscreen-header {
+	padding: 10px;
 }
 .logo-main-desc {
 	font-family: 'Roboto Slab', serif;
@@ -57,7 +64,6 @@ body {
 	width: 80px;
 	height: 80px;
 
-	
 }
 .mainscreen-description {
 	font-size: 36px;
@@ -108,8 +114,8 @@ background-size: 30%;
 	padding-bottom:0;
 }
 .content-item {
-	width: 260px;
-	height: 20vh;
+	width: 400px;
+	height: 30vh;
 	margin: 0 20px;
 	border: 2px solid gray;
 	list-style: none;
@@ -154,9 +160,7 @@ color: #fff;
 	text-align: center;
 }
 .contact {
-	position: absolute;
-	left: 0;
-	bottom: 0;
+
 	width: 100%;
 	height: 100px;
 	padding: 20px 0;
