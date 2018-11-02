@@ -65,8 +65,8 @@
                 <td id="l" contenteditable></td>
                 <td id="d" contenteditable></td>
                 <td id="w" contenteditable></td>
-                <td id="kern" contenteditable></td>
-                <td id="doc" contenteditable></td>
+                <td id="kern" ></td>
+                <td id="doc" ></td>
                 <td data-label="Добавить"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
            </tr>  
       ';  
@@ -84,8 +84,8 @@
                                     <td id="l" contenteditable></td>
                                     <td id="d" contenteditable></td>
                                     <td id="w" contenteditable></td>
-                                    <td id="kern" contenteditable></td>
-                                    <td id="doc" contenteditable></td>
+                                    <td id="kern" ></td>
+                                    <td id="doc" ></td>
 					<td data-label="Добавить"><button type="button" name="btn_add" id="btn_add" class="btn btn-xs btn-success">+</button></td>
 			   </tr>';  
  }  

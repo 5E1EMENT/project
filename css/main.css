@@ -165,6 +165,9 @@ color: #fff;
 	height: 100px;
 	padding: 20px 0;
 }
+.contact-item {
+	text-align: center;
+}
 .contact-item__title {
 	color:#fff;
 	text-transform: uppercase;

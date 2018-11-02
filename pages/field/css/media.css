@@ -13,6 +13,13 @@
     /*}*/
 }
 @media screen and (max-width: 600px) {
+    .wrapper {
+        padding-top: 50px;
+    }
+    .mainscreen-logo {
+        left: 50%;
+        transform: translateX(-50%);
+    }
     table {
         border: 0;
     }
