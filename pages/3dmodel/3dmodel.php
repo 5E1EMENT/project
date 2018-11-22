@@ -1,3 +1,7 @@
+<?php
+session_start();
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,6 +14,7 @@
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/media.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
 
@@ -21,6 +26,9 @@
     <![endif]-->
   </head>
   <body>
+   <a href="/">
+        <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
+    </a>
   <div class="wrapper">
     <h1 class="title">3d Модель</h1>
     </div>
@@ -28,9 +36,13 @@
 	<?php
     require_once '../php/model.php';
     ?>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Main scripts-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	 <!--IE scripts-->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/mymodal.js"></script>-->
 
   </body>
 </html>

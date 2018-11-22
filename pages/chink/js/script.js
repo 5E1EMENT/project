@@ -2,7 +2,7 @@ $(document).ready(function(){
     function fetch_data()
     {
         $.ajax({
-            url:"/pages/php/chink/select.php",
+            url:"../../pages/php/chink/select.php",
             method:"POST",
             success:function(data){
                 $('#live_data').html(data);

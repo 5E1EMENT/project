@@ -22,7 +22,7 @@
   </head>
   <body>
 
-  <a href="http://nikitasdv.ru/">
+  <a href="/3d_field/">
       <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
   </a>
   <div class="wrapper">
@@ -32,6 +32,9 @@
 
   <div id="live_data"></div>
 
+  <div id="live_data_doc"></div>
+
+
   <!--IE scripts-->
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,6 +42,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="lib/noty.min.js" type="text/javascript"></script>
   <script src="js/script.js"></script>
+  <script src="js/doc.js"></script>
 
   </body>
 </html>

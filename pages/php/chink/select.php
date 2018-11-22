@@ -25,12 +25,12 @@
  $rows = mysqli_num_rows($result);
  if($rows > 0)  
  {  
-	  if($rows > 10)
-	  {
-		  $delete_records = $rows - 10;
-		  $delete_sql = "DELETE FROM hole LIMIT $delete_records";
-		  mysqli_query($connect, $delete_sql);
-	  }
+//	  if($rows > 10)
+//	  {
+//		  $delete_records = $rows - 10;
+//		  $delete_sql = "DELETE FROM hole LIMIT $delete_records";
+//		  mysqli_query($connect, $delete_sql);
+//	  }
       while($row = mysqli_fetch_array($result))  
       {  
            $output .= '  

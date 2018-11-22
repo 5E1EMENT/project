@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
+
     function fetch_data()
     {
         $.ajax({
-            url:"/pages/php/field/select.php",
+            url:"../../pages/php/field/select.php",
             method:"POST",
             success:function(data){
                 $('#live_data').html(data);
@@ -20,17 +21,18 @@ $(document).ready(function(){
         var l = $('#l').text();
         var d = $('#d').text();
         var w = $('#w').text();
-        if(nfield == '')
-        {
-            new Noty({
-                theme: 'nest',
-                type: 'error',
-                layout: 'topRight',
-                timeout: 3000,
-                text: 'Введите номер месторождения'
-            }).show();
-            return false;
-        }
+
+        // if(nfield == '')
+        // {
+        //     new Noty({
+        //         theme: 'nest',
+        //         type: 'error',
+        //         layout: 'topRight',
+        //         timeout: 3000,
+        //         text: 'Введите номер месторождения'
+        //     }).show();
+        //     return false;
+        // }
         if(namefield == '')
         {
 
@@ -116,7 +118,7 @@ $(document).ready(function(){
             return false;
         }
         $.ajax({
-            url:"/pages/php/field/insert.php",
+            url:"../../pages/php/field/insert.php",
             method:"POST",
             data:{nfield:nfield, namefield:namefield, x:x, y:y,z:z,l:l,d:d,w:w},
             dataType:"text",
@@ -134,10 +136,12 @@ $(document).ready(function(){
         })
     });
 
+
+
     function edit_data(id, text, column_name)
     {
         $.ajax({
-            url:"/pages/php/field/edit.php",
+            url:"../../pages/php/field/edit.php",
             method:"POST",
             data:{id:id, text:text, column_name:column_name},
             dataType:"text",
@@ -154,11 +158,11 @@ $(document).ready(function(){
             }
         });
     }
-    $(document).on('blur', '.nfield', function(){
-        var id = $(this).data("id1");
-        var first_name = $(this).text();
-        edit_data(id, first_name, "nfield");
-    });
+    // $(document).on('blur', '.nfield', function(){
+    //     var id = $(this).data("id1");
+    //     var first_name = $(this).text();
+    //     edit_data(id, first_name, "nfield");
+    // });
     $(document).on('blur', '.namefield', function(){
         var id = $(this).data("id2");
         var last_name = $(this).text();
@@ -199,7 +203,7 @@ $(document).ready(function(){
         if(confirm("Вы уверены, что хотите удалить месторождение?"))
         {
             $.ajax({
-                url:"/pages/php/field/delete.php",
+                url:"../../pages/php/field/delete.php",
                 method:"POST",
                 data:{id:id},
                 dataType:"text",
@@ -216,4 +220,27 @@ $(document).ready(function(){
             });
         }
     });
-});  
+
+
+        // body...
+
+
+
+});
+
+window.onload = function(){
+    // function fetch_data()
+    // {
+    //     $.ajax({
+    //         url:"../../pages/php/field_doc/select.php",
+    //         method:"POST",
+    //         success:function(data){
+    //             $('#live_data_doc').html(data);
+    //         }
+    //     });
+    // }
+    // var btnDoc = $('.btn_doc');
+    //
+    // btnDoc.on('click', fetch_data);
+
+};
