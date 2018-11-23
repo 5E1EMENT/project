@@ -11,6 +11,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
     <link href="css/media.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link href="lib/themes/nest.css" rel="stylesheet">
@@ -27,7 +28,10 @@
   </div>
  <span id="result"></span>
   <div id="live_data"></div>
-
+  <div class="div"></div>
+  <?php
+  require_once '../php/chink.php';
+  ?>
   <!--IE scripts-->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -35,6 +39,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="lib/noty.min.js" type="text/javascript"></script>
     <script src="js/script.js"></script>
+    <script src="js/mymodal.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 

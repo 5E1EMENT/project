@@ -187,26 +187,26 @@ $(document).ready(function(){
         var last_name = $(this).text();
         edit_data(id,last_name, "d");
     });
-    $(document).on('click', '.btn_delete', function(){
-        var id=$(this).data("id9");
-        if(confirm("Вы уверены, что хотите удалить скважину?"))
-        {
-            $.ajax({
-                url:"/pages/php/chink/delete.php",
-                method:"POST",
-                data:{id:id},
-                dataType:"text",
-                success:function(data){
-                    new Noty({
-                        theme: 'nest',
-                        type: 'success',
-                        layout: 'topRight',
-                        timeout: 3000,
-                        text: data
-                    }).show();
-                    fetch_data();
-                }
-            });
-        }
-    });
+    // $(document).on('click', '.btn_delete', function(){
+    //     var id=$(this).data("id9");
+    //     if(confirm("Вы уверены, что хотите удалить скважину?"))
+    //     {
+    //         $.ajax({
+    //             url:"/pages/php/chink/delete.php",
+    //             method:"POST",
+    //             data:{id:id},
+    //             dataType:"text",
+    //             success:function(data){
+    //                 new Noty({
+    //                     theme: 'nest',
+    //                     type: 'success',
+    //                     layout: 'topRight',
+    //                     timeout: 3000,
+    //                     text: data
+    //                 }).show();
+    //                 fetch_data();
+    //             }
+    //         });
+    //     }
+    // });
 });  
