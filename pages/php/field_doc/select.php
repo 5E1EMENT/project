@@ -7,7 +7,7 @@
 
 $id = $_POST['id'];
 $namefield = $_POST['namefield'];
-echo "Имя филда",$namefield, "номер id", $id + 100;
+//echo "Имя филда",$namefield, "номер id", $id + 100;
 //if (isset($_GET['namefield'])) // Проверка существования переменной
 //{
 //    // Складываем значение полученной переменной с 10
@@ -15,13 +15,15 @@ echo "Имя филда",$namefield, "номер id", $id + 100;
 //
 //    echo "asdasd", $a ;
 //}
-$sql = "SELECT * FROM field_doc ORDER BY id DESC";
-//$sql = "SELECT * FROM `field_doc`,`field` WHERE `field`.`nfield` = `field_doc`.`nfield`  ORDER BY `field_doc`.`id` DESC";
+// $sql = "SELECT * FROM field_doc ORDER BY id DESC";
+$sql = "SELECT * FROM `field_doc`,`field` WHERE `field`.`nfield` = `field_doc`.`nfield` and `field`.`namefield` = '".$namefield."' " ; //ORDER BY `field_doc`.`id` DESC
  $result = mysqli_query($connect, $sql);
 
 
  $output .= '  
-      <div class="table-responsive">  
+ <div class="live_data-close"></div>
+      <div class="table-responsive field-doc_table">
+          <div class="field-doc_table-close"></div>  
            <table class="table table-bordered">
            <thead>
                 <tr>  
@@ -50,7 +52,7 @@ $sql = "SELECT * FROM field_doc ORDER BY id DESC";
                      <td class="nfield" data-id1="'.$row["id"].'" data-label="Номер месторождения" contenteditable>'.$row["nfield"].'</td>
                      <td class="doc"  data-id2="'.$row["id"].'" data-label="Ссылка на документ" > <a href="'.$row["doc"].'"><button type="button" class="btn btn-xs btn-success">Открыть</button></a></td>
                      <td class="doc_desc" data-id3="'.$row["id"].'" data-label="Описание документа" contenteditable>'.$row["doc_desc"].'</td>
-                     <td data-label="Удалить"><button type="button" name="delete_btn" data-id4="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete_doc">x</button></td>
+                     <td data-label="Удалить"><button type="button" name="delete_btn" data-id4="'.$row["id_doc"].'" class="btn btn-xs btn-danger btn_delete_doc">x</button></td>
                 </tr>  
            ';  
       }  

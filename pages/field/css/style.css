@@ -10,9 +10,6 @@ body {
 .wrapper {
     width:100%;
     padding: 10px 0;
-    background: url('../../../img/congruent_outline.png') center center ;
-    -webkit-background-size: 20%;
-    background-size: 20%;
 }
 .table {
     text-align: center;
@@ -26,6 +23,7 @@ body {
     display: inline-block;
 
     color: #000;
+    padding-bottom: 30px;
 }
 table {
     border: 1px solid #ccc;
@@ -82,4 +80,46 @@ th {
 }
 td {
     border: 1px solid black !important;
+}
+#live_data_doc {
+    position: relative;
+    display: none;
+}
+.live_data-close{
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right:  -20px;
+    top: -20px;
+    cursor: pointer;
+}
+.live_data-close::after{
+    display: block;
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 2px;
+    background: #000;
+    transform: rotate(-45deg) translate(-34%,-324%);
+    cursor: pointer;
+    left: 50%;
+    top: 50%;
+
+}
+.live_data-close::before{
+    display: block;
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 2px;
+    background: #000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+
+    cursor: pointer;
+}
+.active-table {
+    display: block !important;
 }

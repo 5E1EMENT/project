@@ -32,7 +32,9 @@
 
   <div id="live_data"></div>
 
-  <div id="live_data_doc"></div>
+  <div id="live_data_doc">
+    
+  </div>
 
 
   <!--IE scripts-->

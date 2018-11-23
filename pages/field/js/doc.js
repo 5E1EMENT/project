@@ -8,35 +8,42 @@ $(document).ready(function(){
             method:"POST",
             success:function(data){
                 $('#live_data_doc').html(data);
+                
             }
         });
     }
     // var btnDoc = $('.btn_doc');
 
-    $(document).on('click', ".btn_doc", fetch_data);
+     //$(document).on('click', ".btn_doc", fetch_data);
 
 
     $(document).on('click', ".btn_doc", function () {
         var id = $(this).closest('tr').find('.namefield').attr("data-id2");//.attr("data-id")
         var namefield = $(this).closest('tr').find('.namefield').text();
-
+        $('#live_data_doc').stop().slideUp(400).stop().slideDown(400);
 
         $.ajax({
             url: "../../pages/php/field_doc/select.php",
             method: "POST",
-            data: {namefield: namefield, id:id},
-            dataType:"text",
-            success:function(data)
-            {
-                new Noty({
-                    theme: 'nest',
-                    type: 'success',
-                    layout: 'topRight',
-                    timeout: 5000,
-                    text: data
-                }).show();
-                fetch_data();
-            }
+            data: {namefield: namefield},
+            dataType:"html"
+        }).done(function(data)
+        {
+
+            $('#live_data_doc').html(data);
+
+            $(document).on('click', ".live_data-close", function show () {
+                console.log(1);
+                $('#live_data_doc').slideUp(400);
+            });
+            // new Noty({
+            //     theme: 'nest',
+            //     type: 'success',
+            //     layout: 'topRight',
+            //     timeout: 50000,
+            //     text: data
+            // }).show();
+            //fetch_data();
         })
 
         // $.ajax({
@@ -118,13 +125,14 @@ $(document).ready(function(){
                     text: data
                 }).show();
                 fetch_data();
+                $('#live_data_doc').slideUp(400);
+                // $('#live_data_doc').slideDown(400);
             }
         })
     });
 
     function edit_data(id, text, column_name)
     {
-
         $.ajax({
             url:"../../pages/php/field_doc/edit.php",
             method:"POST",
@@ -177,8 +185,15 @@ $(document).ready(function(){
                         text: data
                     }).show();
                     fetch_data();
+                    $('#live_data_doc').slideUp(400);
                 }
             });
         }
     });
+});
+$(document).ready(function(){
+
+
+
+
 });

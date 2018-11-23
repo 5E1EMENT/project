@@ -139,24 +139,25 @@
  			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='Удалить'/> </td>";
  		};
  	$table.= "</tbody></table></div><br>";
- 	$table.="<input type='submit' class='btn btn-xs btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></form>";
+ 	$table.="</form>";
  	echo $table, '<br>';
+ 	echo "<input type='submit' class='btn btn-xs btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/>";
 
  	};
 
 
  	if (isset($_GET['add'])&&!empty($_GET['add']))
  	{
- 		echo '<form action="3dmodel.php" method="GET" name="add1">';
- 		echo 'Имя модели   <input type="text" name="namemod"/> <br>';
- 		echo 'Номер модели   <input type="text" name="nmod"/> <br>';
- 		echo 'Высота <input type="text" name="d"/><br>';
- 		echo 'Длина <input type="text" name="l"/><br>';
- 		echo 'Ширина  <input type="text" name="w"/><br>';
- 		echo 'Размер блока <input type="text" name="ub"/><br>';
-
- 		echo '<input type="submit" value="Add record"/>';
- 		echo '</FORM>';
+// 		echo '<form action="3dmodel.php" method="GET" name="add1">';
+// 		echo 'Имя модели   <input type="text" name="namemod"/> <br>';
+// 		echo 'Номер модели   <input type="text" name="nmod"/> <br>';
+// 		echo 'Высота <input type="text" name="d"/><br>';
+// 		echo 'Длина <input type="text" name="l"/><br>';
+// 		echo 'Ширина  <input type="text" name="w"/><br>';
+// 		echo 'Размер блока <input type="text" name="ub"/><br>';
+//
+// 		echo '<input type="submit" value="Add record"/>';
+// 		echo '</FORM>';
  	//}
 	//else
  	//{

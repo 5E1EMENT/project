@@ -5,7 +5,7 @@ $sql = "INSERT INTO field_doc (nfield, doc,doc_desc) VALUES('".$_POST["nfield"].
 
 if(mysqli_query($connect, $sql))  
 {
-    echo "asdasdasdas", $_POST["nfield"];
+    //echo "asdasdasdas", $_POST["nfield"];
      echo 'Документ добавлен';
 }  
  ?>

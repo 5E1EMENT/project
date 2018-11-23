@@ -11,10 +11,11 @@ ob_start();
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>3d Model</title>
 
-    <!-- Bootstrap -->
+    <!-- Styles -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
     <link href="css/media.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
 
@@ -36,11 +37,17 @@ ob_start();
 	<?php
     require_once '../php/model.php';
     ?>
-    <!--Main scripts-->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+   <div class="div"></div>
+    <!--Main  scripts-->
+   <script
+           src="http://code.jquery.com/jquery-3.3.1.min.js"
+           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+           crossorigin="anonymous"></script>
 	 <!--IE scripts-->
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   <script src="js/mymodal.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/mymodal.js"></script>-->
 
