@@ -22,7 +22,7 @@
   </head>
   <body>
 
-  <a href="/3d_field/">
+  <a href="/">
       <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
   </a>
   <div class="wrapper">

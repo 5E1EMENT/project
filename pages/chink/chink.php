@@ -19,19 +19,23 @@
 
   </head>
   <body>
-  <a href="http://nikitasdv.ru/">
+  <a href="/">
   <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
+  </a>
+  <a href="/pages/field/field.php">
+      <img src="img/reply.svg" class="mainscreen-logo-arrow">
   </a>
 
   <div class="wrapper">
     <h1 class="title">Скважины</h1>
   </div>
- <span id="result"></span>
   <div id="live_data"></div>
+
   <div class="div"></div>
   <?php
-  require_once '../php/chink.php';
+  require_once '../php/chink/chink.php';
   ?>
+  <div id="live_data_core"></div>
   <!--IE scripts-->
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -40,6 +44,7 @@
     <script src="lib/noty.min.js" type="text/javascript"></script>
     <script src="js/script.js"></script>
     <script src="js/mymodal.js"></script>
+    <script src="js/core.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 

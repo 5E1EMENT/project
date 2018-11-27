@@ -131,12 +131,12 @@ $(document).ready(function(){
         })
     });
 
-    function edit_data(id, text, column_name)
+    function edit_data(id_doc, text, column_name)
     {
         $.ajax({
             url:"../../pages/php/field_doc/edit.php",
             method:"POST",
-            data:{id:id, text:text, column_name:column_name},
+            data:{id_doc:id_doc, text:text, column_name:column_name},
             dataType:"text",
             success:function(data){
                 //alert(data);
@@ -152,19 +152,19 @@ $(document).ready(function(){
         });
     }
     $(document).on('blur', '.nfield', function(){
-        var id = $(this).data("id1");
+        var id_doc = $(this).data("id1");
         var first_name = $(this).text();
-        edit_data(id, first_name, "nfield");
+        edit_data(id_doc, first_name, "nfield");
     });
     $(document).on('blur', '.doc', function(){
-        var id = $(this).data("id2");
+        var id_doc = $(this).data("id2");
         var last_name = $(this).text();
-        edit_data(id,last_name, "doc");
+        edit_data(id_doc,last_name, "doc");
     });
     $(document).on('blur', '.doc_desc', function(){
-        var id = $(this).data("id3");
+        var id_doc = $(this).data("id3");
         var last_name = $(this).text();
-        edit_data(id,last_name, "doc_desc");
+        edit_data(id_doc,last_name, "doc_desc");
     });
 
     $(document).on('click', '.btn_delete_doc', function(){

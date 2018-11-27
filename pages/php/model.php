@@ -15,7 +15,7 @@
 
  // Выбор месторождения - ниспадающий список месторожденией из базы и кнопка
  	echo '<form action ="3dmodel.php" method="GET">';
- 	echo '<select class="form-control" name="sel1" >';
+ 	echo '<select class="form-control form-control-lg" name="sel1" >';
  	$temp = '<option> Выберите месторождение </option>';
  	while ($row = mysqli_fetch_array($result))
  	{
@@ -26,7 +26,7 @@
  	//mysql_free_result($result);
  	echo $temp;
  	echo '</select>';
- 	echo '<input type="submit" class="btn btn-xs btn-success btn_add" name="sel_field" value="Открыть модели месторождения"/>';
+ 	echo '<input type="submit" class="btn btn-lg btn-info btn_add" name="sel_field" value="Открыть модели месторождения"/>';
 
  	echo '</form><BR>';
 
@@ -141,7 +141,7 @@
  	$table.= "</tbody></table></div><br>";
  	$table.="</form>";
  	echo $table, '<br>';
- 	echo "<input type='submit' class='btn btn-xs btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/>";
+ 	echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/>";
 
  	};
 

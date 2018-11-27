@@ -5,7 +5,7 @@
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
 
-$id = $_POST['id'];
+$idhole = $_POST['idhole'];
 $namefield = $_POST['namefield'];
 //echo "Имя филда",$namefield, "номер id", $id + 100;
 //if (isset($_GET['namefield'])) // Проверка существования переменной
@@ -49,9 +49,9 @@ $sql = "SELECT * FROM `field_doc`,`field` WHERE `field`.`nfield` = `field_doc`.`
            $output .= '  
                 <tr>  
                    
-                     <td class="nfield" data-id1="'.$row["id"].'" data-label="Номер месторождения" contenteditable>'.$row["nfield"].'</td>
-                     <td class="doc"  data-id2="'.$row["id"].'" data-label="Ссылка на документ" > <a href="'.$row["doc"].'"><button type="button" class="btn btn-xs btn-success">Открыть</button></a></td>
-                     <td class="doc_desc" data-id3="'.$row["id"].'" data-label="Описание документа" contenteditable>'.$row["doc_desc"].'</td>
+                     <td class="nfield" data-id1="'.$row["id_doc"].'" data-label="Номер месторождения" contenteditable>'.$row["nfield"].'</td>
+                     <td class="doc"  data-id2="'.$row["id_doc"].'" data-label="Ссылка на документ" > <a href="'.$row["doc"].'"><button type="button" class="btn btn-xs btn-success">Открыть</button></a></td>
+                     <td class="doc_desc" data-id3="'.$row["id_doc"].'" data-label="Описание документа" contenteditable>'.$row["doc_desc"].'</td>
                      <td data-label="Удалить"><button type="button" name="delete_btn" data-id4="'.$row["id_doc"].'" class="btn btn-xs btn-danger btn_delete_doc">x</button></td>
                 </tr>  
            ';  
@@ -59,8 +59,15 @@ $sql = "SELECT * FROM `field_doc`,`field` WHERE `field`.`nfield` = `field_doc`.`
       $output .= '  
            <tr>  
                 <td id="nfield" contenteditable></td>
-                <td id="document" contenteditable></td>
-                <td id="doc_desc" contenteditable></td>
+                <td id="document" >
+                <form method="POST" action="php/upload.php" enctype="multipart/form-data" ><input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                <input class="btn xs btn-dark" type="file" name="filename" size="9"><input class="btn xs btn-secondary" type="submit" value="Загрузка">
+                </form>
+                
+                
+                
+</td>
+                <td id="doc_desc" ></td>
                 <td data-label="Добавить"><button type="button" name="btn_add" id="btn_add_doc" class="btn btn-xs btn-success">+</button></td>
            </tr>  
       ';  
@@ -76,6 +83,7 @@ $sql = "SELECT * FROM `field_doc`,`field` WHERE `field`.`nfield` = `field_doc`.`
            </tr>  ';
  }  
  $output .= '</tbody></table>
+
       </div>';
 
  echo $output;  

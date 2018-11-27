@@ -30,6 +30,9 @@ ob_start();
    <a href="/">
         <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
     </a>
+   <a href="/pages/field/field.php">
+       <img src="img/reply.svg" class="mainscreen-logo-arrow">
+   </a>
   <div class="wrapper">
     <h1 class="title">3d Модель</h1>
     </div>

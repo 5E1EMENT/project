@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Ноя 13 2018 г., 09:20
--- Версия сервера: 10.1.28-MariaDB
--- Версия PHP: 7.1.10
+-- Хост: 127.0.0.1:3307
+-- Время создания: Ноя 27 2018 г., 12:05
+-- Версия сервера: 5.6.41
+-- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,7 +71,7 @@ INSERT INTO `blockmap` (`nmap`, `namemap`, `xy`, `z`) VALUES
 
 CREATE TABLE `core` (
   `idcore` int(11) NOT NULL COMMENT 'ID керна',
-  `idhole` int(11) NOT NULL COMMENT 'ID скважины',
+  `idhole` int(11) NOT NULL COMMENT 'Номер скважины',
   `ncore` int(11) NOT NULL COMMENT '№ керна',
   `l` int(11) NOT NULL COMMENT 'Длина керна'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Керн';
@@ -101,7 +101,6 @@ INSERT INTO `core` (`idcore`, `idhole`, `ncore`, `l`) VALUES
 (18, 13, 5, 1),
 (19, 16, 4, 1),
 (20, 17, 3, 1),
-(21, 0, 0, 0),
 (22, 17, 4, 1),
 (23, 18, 3, 1),
 (24, 18, 4, 1);
@@ -129,8 +128,10 @@ CREATE TABLE `field` (
 --
 
 INSERT INTO `field` (`id`, `nfield`, `namefield`, `x`, `y`, `z`, `l`, `d`, `w`) VALUES
-(13, 1, 'Test Field 40x40x8', 0, 0, 0, 40, 1238, 40),
-(14, 2, 'dsfsdf', 1, 2, 3, 4, 1, 2);
+(13, 4, 'Test Field 40x40x8', 0, 0, 0, 44, 1238, 44),
+(14, 2, 'Test Field 40x40x5', 1, 2, 3, 4, 1, 2),
+(15, 3, 'Test Field 40x40x7', 1, 2, 3, 4, 4, 24),
+(16, 1, 'Test Field 40x40x6', 1, 2, 3, 44, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -139,11 +140,24 @@ INSERT INTO `field` (`id`, `nfield`, `namefield`, `x`, `y`, `z`, `l`, `d`, `w`) 
 --
 
 CREATE TABLE `field_doc` (
+  `id_doc` int(11) NOT NULL,
   `nfield` int(11) NOT NULL COMMENT '№ месторождения',
-  `iddoc` int(11) NOT NULL COMMENT 'ID документа месторождения',
   `doc` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'Ссылка на документ',
-  `desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'Описание документа'
+  `doc_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT 'Описание документа'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `field_doc`
+--
+
+INSERT INTO `field_doc` (`id_doc`, `nfield`, `doc`, `doc_desc`) VALUES
+(3, 2, 'https://mail.ru', 'mail'),
+(26, 1, 'https://youtube.com', 'youtube'),
+(4, 3, 'https://coinmarketcap.com', 'cryptocurrecy'),
+(5, 0, 'https://habr.ru', 'habr'),
+(21, 5, '33', '4'),
+(18, 5, '33', '5'),
+(14, 4, 'asdasdd', 'sadsad');
 
 -- --------------------------------------------------------
 
@@ -152,7 +166,7 @@ CREATE TABLE `field_doc` (
 --
 
 CREATE TABLE `hole` (
-  `id` int(11) NOT NULL COMMENT 'id',
+  `idhole` int(11) NOT NULL COMMENT 'id',
   `nfield` int(11) NOT NULL COMMENT '№ месторождения',
   `nhole` int(11) NOT NULL COMMENT '№ cкважины',
   `x` int(11) NOT NULL COMMENT 'Х координата',
@@ -167,17 +181,14 @@ CREATE TABLE `hole` (
 -- Дамп данных таблицы `hole`
 --
 
-INSERT INTO `hole` (`id`, `nfield`, `nhole`, `x`, `y`, `z`, `a`, `b`, `d`) VALUES
-(17, 1, 16, 10, 30, 0, 0, 0, 8),
-(18, 1, 17, 20, 30, 0, 0, 0, 8),
-(19, 1, 18, 30, 30, 0, 0, 0, 8),
-(20, 1, 19, 40, 30, 0, 0, 0, 8),
-(21, 1, 20, 0, 40, 0, 0, 0, 8),
-(22, 1, 21, 10, 40, 0, 0, 0, 8),
-(23, 1, 22, 20, 40, 0, 0, 0, 8),
-(24, 1, 23, 30, 40, 0, 0, 0, 8),
-(25, 1, 24, 40, 40, 0, 0, 0, 8),
-(26, 1, 25, 0, 0, 0, 0, 0, 7);
+INSERT INTO `hole` (`idhole`, `nfield`, `nhole`, `x`, `y`, `z`, `a`, `b`, `d`) VALUES
+(7, 1, 7, 20, 10, 0, 0, 0, 0),
+(6, 1, 6, 0, 10, 0, 0, 0, 8),
+(4, 1, 4, 40, 0, 0, 0, 0, 8),
+(3, 1, 3, 30, 0, 0, 0, 0, 8),
+(2, 1, 2, 20, 0, 0, 0, 0, 8),
+(1, 1, 1, 10, 0, 0, 0, 0, 8),
+(0, 1, 0, 0, 0, 0, 0, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -199,37 +210,38 @@ CREATE TABLE `holedoc` (
 
 CREATE TABLE `linkcm` (
   `idcore` int(11) NOT NULL,
-  `idmine` int(11) NOT NULL
+  `idmine` int(11) NOT NULL,
+  `perc` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Связь керн - полезные ископаемые';
 
 --
 -- Дамп данных таблицы `linkcm`
 --
 
-INSERT INTO `linkcm` (`idcore`, `idmine`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 2),
-(5, 2),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 2),
-(14, 2),
-(15, 2),
-(16, 2),
-(17, 2),
-(18, 2),
-(19, 1),
-(20, 2),
-(21, 2),
-(22, 1),
-(23, 1);
+INSERT INTO `linkcm` (`idcore`, `idmine`, `perc`) VALUES
+(1, 1, 25),
+(2, 1, 25),
+(3, 1, 25),
+(4, 1, 50),
+(5, 1, 50),
+(6, 1, 25),
+(7, 1, 25),
+(8, 1, 25),
+(9, 1, 25),
+(10, 1, 25),
+(11, 1, 25),
+(12, 1, 25),
+(13, 1, 50),
+(14, 1, 50),
+(15, 1, 50),
+(16, 1, 50),
+(17, 1, 50),
+(18, 1, 50),
+(19, 1, 25),
+(20, 1, 50),
+(21, 1, 50),
+(22, 1, 25),
+(23, 1, 25);
 
 -- --------------------------------------------------------
 
@@ -263,17 +275,16 @@ INSERT INTO `map` (`nmod`, `namemap`, `h`, `x1y1`, `x2y2`, `nfield`, `typemap`) 
 CREATE TABLE `mine` (
   `idmine` int(11) NOT NULL COMMENT '№ полезного ископаемого',
   `name` varchar(256) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Название полезного ископаемого',
-  `clr` varchar(256) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Цвет отображения',
-  `perc` int(11) NOT NULL COMMENT '% содержания'
+  `clr` varchar(256) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'Цвет отображения'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Полезные ископаемые';
 
 --
 -- Дамп данных таблицы `mine`
 --
 
-INSERT INTO `mine` (`idmine`, `name`, `clr`, `perc`) VALUES
-(1, 'Gold (Au 25%)', '#DAA520', 25),
-(2, 'Gold (Au 50%)', '#B8860B', 50);
+INSERT INTO `mine` (`idmine`, `name`, `clr`) VALUES
+(1, 'Gold', '#DAA520'),
+(2, 'Ferum', '#B8860B');
 
 -- --------------------------------------------------------
 
@@ -296,10 +307,15 @@ CREATE TABLE `model` (
 --
 
 INSERT INTO `model` (`nfield`, `nmod`, `namemod`, `d`, `l`, `w`, `unitb`) VALUES
-(1, 1, 'Test Field 40x40x8', 40, 40, 9, 1),
-(1, 3, '1', 11, 1, 1, 1111111111),
-(1, 2, 'kfjhfkjjhh', 1, 1, 1, 1),
-(2, 4, '1', 1, 1, 1, 1);
+(0, 3, 'Three', 2, 3, 4, 5),
+(0, 1, 'One', 2, 3, 4, 5),
+(2, 1, 'Lol', 2, 3, 4, 5),
+(3, 1, 'dssd', 2, 3, 4, 5),
+(1, 1, 'DAD', 2, 3, 4, 5),
+(0, 3, 'Two', 2, 3, 5, 12),
+(0, 4, 'Four', 1, 2, 3, 4),
+(4, 1, 'BBB', 2, 3, 4, 5),
+(2, 2, 'lol2', 5, 5, 5, 55);
 
 --
 -- Индексы сохранённых таблиц
@@ -333,13 +349,13 @@ ALTER TABLE `field`
 -- Индексы таблицы `field_doc`
 --
 ALTER TABLE `field_doc`
-  ADD PRIMARY KEY (`iddoc`);
+  ADD PRIMARY KEY (`id_doc`);
 
 --
 -- Индексы таблицы `hole`
 --
 ALTER TABLE `hole`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idhole`);
 
 --
 -- Индексы таблицы `holedoc`
@@ -358,12 +374,6 @@ ALTER TABLE `map`
 --
 ALTER TABLE `mine`
   ADD PRIMARY KEY (`idmine`);
-
---
--- Индексы таблицы `model`
---
-ALTER TABLE `model`
-  ADD PRIMARY KEY (`nmod`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -385,25 +395,25 @@ ALTER TABLE `blockmap`
 -- AUTO_INCREMENT для таблицы `core`
 --
 ALTER TABLE `core`
-  MODIFY `idcore` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID керна', AUTO_INCREMENT=25;
+  MODIFY `idcore` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID керна', AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `field`
 --
 ALTER TABLE `field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `field_doc`
 --
 ALTER TABLE `field_doc`
-  MODIFY `iddoc` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID документа месторождения';
+  MODIFY `id_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT для таблицы `hole`
 --
 ALTER TABLE `hole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=27;
+  MODIFY `idhole` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `holedoc`
