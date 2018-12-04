@@ -21,7 +21,7 @@ $(document).ready(function(){
         var id = $(this).closest('tr').find('.namefield').attr("data-id2");//.attr("data-id")
         var namefield = $(this).closest('tr').find('.namefield').text();
         $('#live_data_doc').stop().slideUp(400).stop().slideDown(400);
-
+        console.log(id);
         $.ajax({
             url: "../../pages/php/field_doc/select.php",
             method: "POST",
@@ -75,8 +75,9 @@ $(document).ready(function(){
 
     $(document).on('click', '#btn_add_doc', function(){
         var nfield = $('#nfield').text();
-        var doc = $('#document').text();
+        //var doc = $('#document').text();
         var doc_desc = $('#doc_desc').text();
+        console.log(doc);
         if(nfield == '')
         {
             new Noty({
@@ -88,17 +89,17 @@ $(document).ready(function(){
             }).show();
             return false;
         }
-        if(doc == '')
-        {
-            new Noty({
-                theme: 'nest',
-                type: 'error',
-                layout: 'topRight',
-                timeout: 3000,
-                text: 'Введите ссылку на документ'
-            }).show();
-            return false;
-        }
+        // if(doc == '')
+        // {
+        //     new Noty({
+        //         theme: 'nest',
+        //         type: 'error',
+        //         layout: 'topRight',
+        //         timeout: 3000,
+        //         text: 'Введите ссылку на документ'
+        //     }).show();
+        //     return false;
+        // }
         if(doc_desc == '')
         {
             new Noty({
@@ -113,7 +114,7 @@ $(document).ready(function(){
         $.ajax({
             url:"../../pages/php/field_doc/insert.php",
             method:"POST",
-            data:{nfield:nfield, doc:doc, doc_desc:doc_desc},
+            data:{nfield:nfield, doc_desc:doc_desc},
             dataType:"text",
             success:function(data)
             {

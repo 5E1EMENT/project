@@ -72,15 +72,16 @@ $(document).ready(function(){
 
 
 
-    function edit_data(idmine, text, column_name)
+    function edit_data(id, text, column_name)
     {
         $.ajax({
             url:"../../pages/php/mine/edit.php",
             method:"POST",
-            data:{idmine:idmine, text:text, column_name:column_name},
+            data:{id:id, text:text, column_name:column_name},
             dataType:"text",
             success:function(data){
                 //alert(data);
+                //console.log(id,text,column_name);
                 //$('#result').html("<div class='alert alert-success'>"+data+"</div>");
                 new Noty({
                     theme: 'nest',
@@ -94,14 +95,15 @@ $(document).ready(function(){
     }
 
     $(document).on('blur', '.name', function(){
-        var idmine = $(this).data("id1");
+        var id = $(this).data("id1");
         var last_name = $(this).text();
-        edit_data(idmine,last_name, "name");
+        edit_data(id,last_name, "name");
+        console.log(id);
     });
     $(document).on('blur', '.clr', function(){
-        var idmine = $(this).data("id2");
+        var id = $(this).data("id2");
         var last_name = $(this).text();
-        edit_data(idmine,last_name, "clr");
+        edit_data(id,last_name, "clr");
     });
 
     $(document).on('click', '.btn_delete_mine', function(){

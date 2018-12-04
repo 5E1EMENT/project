@@ -147,7 +147,7 @@ if (isset($_GET['sel1']) || isset($_SESSION['nf']))
     $table.= "</tbody></table></div><br>";
     $table.="</form>";
     echo $table;
-    echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_hole' name='add1' id='btn_add_hole' value='Добавить новую модель'/>";
+    echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_hole' name='add1' id='btn_add_hole' value='Добавить новую скважину'/>";
 
 };
 

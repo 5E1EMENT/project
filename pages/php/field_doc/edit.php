@@ -7,7 +7,7 @@
     $sql = "UPDATE field_doc SET ".$column_name."='".$text."' WHERE id_doc='".$id."'";
     if(mysqli_query($connect, $sql))
     {
-        echo $id;
+//        echo $id;
     echo 'Документ обновлен';
     }
 ?>
