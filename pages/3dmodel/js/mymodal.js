@@ -43,7 +43,6 @@ function Popup(obj) {
     var  popup = this;
 
     this.open = function(content) {
-        console.log(content);
         div.innerHTML = content;
         this.modal.appendChild(div);
         this.overlay.classList.add('show');
@@ -75,7 +74,6 @@ window.onload = function(){
     });
 
     btn.onclick = function() {
-        console.log(1);
         p.open('<form action="/pages/3dmodel/3dmodel.php" name="add1" class="form_model" id="form_model" method="GET">' +
             'Имя модели   <input type="text" name="namemod"/> <br>' +
             'Номер модели   <input type="text" name="nmod"/> <br>' +

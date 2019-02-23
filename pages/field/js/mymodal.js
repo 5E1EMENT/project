@@ -51,7 +51,7 @@ function Popup(obj) {
     }
 
     this.close = function(content) {
-        div.innerHTML = content;
+       
         this.overlay.classList.remove('show');
         this.modal.classList.remove('show');
     }
@@ -74,27 +74,21 @@ window.onload = function(){
 
     });
   
-    // btn.onclick = function() {
-    //     console.log(1);
-    //     p.open('<form action="/pages/php/field.php" class="form_chink" id="form_chink" method="GET">' +
-    //         'Номер Скважины<input type="text" name="chink_number" required/> <br>' +
-    //         'Номер Месторождения<input type="text" name="field_number"required/> <br>' +
-    //         'Координата X<input type="text" name="chink_x"required/> <br>' +
-    //         'Координата Y<input type="text" name="chink_y"required/> <br>' +
-    //         'Координата Z<input type="text" name="chink_z"required/> <br>' +
-    //         'Угол Альфа<input type="text" name="chink_a"required/> <br> ' +
-    //         'Угол Бета<input type="text" name="chink_b"required/> <br> ' +
-    //         'Глубина (W)<input type="text" name="chink_w" required/> <br>' +
-    //         '<button type="submit" id="chink_submit" name="chink_add" >Добавить запись</button> <br>' +
-    //         '</form>');
-    //     //var form = document.querySelector('обёртка для сверстанной формы');
-    //     //для обертки дать display:none;
-    //     //p.open(form.innerHTML);
-    //     //Свойство innerHTML позволяет получить HTML-содержимое элемента в виде строки.
-    // };
+    btn.onclick = function() {
+        console.log(1);
+        p.open('<form action="/pages/php/field.php" class="form_chink" id="form_chink" method="GET">' +
+            'Номер Скважины<input type="text" name="chink_number" required/> <br>' +
+            'Номер Месторождения<input type="text" name="field_number"required/> <br>' +
+            'Координата X<input type="text" name="chink_x"required/> <br>' +
+            'Координата Y<input type="text" name="chink_y"required/> <br>' +
+            'Координата Z<input type="text" name="chink_z"required/> <br>' +
+            'Угол Альфа<input type="text" name="chink_a"required/> <br> ' +
+            'Угол Бета<input type="text" name="chink_b"required/> <br> ' +
+            'Глубина (W)<input type="text" name="chink_w" required/> <br>' +
+            '<button type="submit" id="chink_submit" name="chink_add" >Добавить запись</button> <br>' +
+            '</form>');
 
-    // btn1.onclick = function() {
-    //     p.open('<div class="oo">РАБОТАЕТ БЛЯ!</div>');
-    // };
+    };
+
     
 };

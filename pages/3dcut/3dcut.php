@@ -1,3 +1,7 @@
+<?php
+ Session_Start();
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,6 +14,7 @@
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
 
@@ -21,16 +26,21 @@
     <![endif]-->
   </head>
   <body>
-  <div class="wrapper">
-    <h1 class="title">3d разрез</h1>
+  <div class="div"></div>
+     <a href="/">
+        <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
+    </a>
+    <div class="wrapper">
+    <h1 class="title">3d разрезы и карты</h1>
     </div>
-
-	
 	<?php
     require_once '../php/cut.php';
     ?>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/mymodal.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 
   </body>

@@ -14,7 +14,7 @@
  	$result = mysqli_query($link, $query) or die("Ошибка 1 - Нет связи с таблицей nfield" . mysqli_error($link));
 
  // Выбор месторождения - ниспадающий список месторожденией из базы и кнопка
- 	echo '<form action ="3dmodel.php" method="GET">';
+ 	echo '<form class="model-choose" action ="3dmodel.php" method="GET">';
  	echo '<select class="form-control form-control-lg" name="sel1" >';
  	$temp = '<option> Выберите месторождение </option>';
  	while ($row = mysqli_fetch_array($result))
@@ -80,7 +80,7 @@
  			};
  		};
 
- 		   echo "nmod=",$i, "nfield=",$nfield;
+ 		   //echo "nmod=",$i, "nfield=",$nfield;
            $query = "DELETE FROM `model` WHERE `nmod`=".$i." and `nfield`=".$nfield;
            mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
  		};
@@ -111,60 +111,53 @@
  // ini_set('display_errors',1);
  // error_reporting(E_ALL);
 
- 		$table = "<form action='3dmodel.php' method='GET'> 
+ 		$table = "<div class='form-wrapper'><form action='3dmodel.php' method='GET' id='model-form' class='model-form'> 
  		<div class='table-responsive'> 
  		<table  class='table table-bordered'> 
  		<thead>
  			<tr>
- 		<th>Имя модели</th><th>Номер Модели</th><th>Длина</th><th>Высота</th><th>Ширина</th><th>Размер блока</th><th></th><th></th></tr>
+ 		<th>Имя модели</th><th>Номер Модели</th><th>Длина</th><th>Высота</th><th>Ширина</th><th>Размер блока</th><th class='model-form__view'></th><th class='model-form__delete'></th></tr>
 		</thead>
 		<tbody>
  		";
  		while ($row = mysqli_fetch_array($result))
  		{
- 			$table.="<tr><td>";
+ 			$table.="<tr class='table-row'><td>";
  			$table.= $row['namemod'];
- 			$table.="</td><td>";
+ 			$table.="</td><td class='nmod' data-nmod='".$row['nmod']."'>";
  			$table.= $row['nmod'];
- 			$table.="</td><td>";
+ 			$table.="</td><td class='l' data-l='".$row['l']."'>";
  			$table.= $row['l'];
- 			$table.= "</td><td>";
+ 			$table.= "</td><td class='d' data-d='".$row['d']."'>";
  			$table.= $row['d'];
- 			$table.="</td><td>";
+ 			$table.="</td><td class='w' data-w='".$row['w']."'>";
  			$table.= $row['w'];
- 			$table.="</td><td>";
+ 			$table.="</td><td class='ub' data-ub='".$row['unitb']."'>";
  			$table.= $row['unitb'];
  			$table.= "</td>";
- 			$table.="<td><input type='submit' class='btn btn-xs btn-success btn_add' name='view_".$row['nmod']."' value='Просмотр'/> </td>";
+ 			$table.="<td><input type='button' class='btn btn-xs btn-success btn_view' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."' value='Просмотр'/> </td>";
  			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='Удалить'/> </td>";
  		};
  	$table.= "</tbody></table></div><br>";
- 	$table.="</form>";
- 	echo $table, '<br>';
- 	echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/>";
+ 	$table.="</form><input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
+ 	echo $table, "<div class='canvas-wrapper'>
+        <label for='tbase'>Топаоснова</label>
+ 		    <input type='checkbox' name='tbase' checked='checked'>
+ 		<label for='minerals'>Полезные ископаемые</label> 
+		    <input type='checkbox' name='minerals' checked='checked'>
+		<label for='hydro'>Гидрогеология</label>
+		    <input type='checkbox' name='hydro'>
+		<label for='3d'>3D</label>
+		    <input type='checkbox' name='3d' checked='checked'>
+		<label for='2d'>2D</label>
+		    <input type='checkbox' name='2d'>
+		</div>";
+ 	
 
  	};
 
 
- 	if (isset($_GET['add'])&&!empty($_GET['add']))
- 	{
-// 		echo '<form action="3dmodel.php" method="GET" name="add1">';
-// 		echo 'Имя модели   <input type="text" name="namemod"/> <br>';
-// 		echo 'Номер модели   <input type="text" name="nmod"/> <br>';
-// 		echo 'Высота <input type="text" name="d"/><br>';
-// 		echo 'Длина <input type="text" name="l"/><br>';
-// 		echo 'Ширина  <input type="text" name="w"/><br>';
-// 		echo 'Размер блока <input type="text" name="ub"/><br>';
-//
-// 		echo '<input type="submit" value="Add record"/>';
-// 		echo '</FORM>';
- 	//}
-	//else
- 	//{
- 	//	echo '<form action="3dmodel.php?act=1" method="GET">';
- 	//	echo '<center><input type="submit" name="add" value="Add new model" /></center>';
- 	//	echo '</form>';
- 	};
+ 	
 
 
 
