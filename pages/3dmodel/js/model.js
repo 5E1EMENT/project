@@ -8,7 +8,6 @@ var container = document.getElementById( 'scene' );
 //Функция построения модели !!!!
 var buildModel = function (l,d,w,ub) {
 
-
 //Считываем параметры с ячеек таблицы
     l = parseInt($(this).closest('.table-row').find('.l').attr('data-l'));
     d = parseInt($(this).closest('.table-row').find('.d').attr('data-d'));
@@ -155,14 +154,14 @@ function init() {
 }
 
 //Функция отрисовки
-function draw(x,y,z,color,ub) {
+function draw(x,y,z,color,pi,ub) {
     if(that.hasClass('active-btn')) {
         //Геометрия куба(глубина, ширина, высота)
         let cubeGeom = new THREE.BoxGeometry(ub, ub, ub);
 
         //Материал для рисования геометрических фигур
         //Задаем цвет, прозрачность
-        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: 1});
+        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: pi/100});
 
         // События при изменении размера окна
         THREEx.WindowResize(renderer, camera);
@@ -172,7 +171,7 @@ function draw(x,y,z,color,ub) {
         cube = new THREE.Mesh(cubeGeom, cubeMat);
 
         //Позиция куба
-        cube.position.set(x, y, z);
+        cube.position.set(x, z, y);
 
         //Прикрепляем куб к сцене
         scene.add(cube);
@@ -217,6 +216,8 @@ function render() {
     //Сохраняем контекст
     var that = $(this);
     //Запускаем через маленький промежуток времени, чтобы сработал прелоадер
+
+
     setTimeout(function () {
 
         //Если у кнопки Просмотр нет активного класса, то добавим
@@ -237,37 +238,84 @@ function render() {
                init();
             //Проходимся циклом по длине
             console.time('q');
-            for (var x=0; x<l; x=x+ub) {
-                //Проходимся циклом по ширине
-                for (var y=0; y<d; y=y+ub) {
-                    //Проходимся циклом по глубине
-                    for (var z=0; z<w; z=z+ub) {
-                        //Цвет
-                        var c = 0x000066;
-                        var i = Math.round(Math.random()*3);
-                        if (i==4) {
-                            c = 0x000000;
-                        }
-                        if (i==1) {
-                            c = 0xff0000;
-                        }
-                        if (i==2) {
-                            c = 0x00ff00;
-                        }
-                        if (i==3) {
-                            c = 0x0000ff;
-                        }
-                        if(c != 0x000000) {
-                            //if( x==0 || y==0  || z==0 || x==l || y==d || z==w){
-                                //Отрисовать
-                                draw(x,y,z,c,ub);
 
-                            //}
-                        }
+            
+                //Запрос
+                let result =  new Promise ( (resolve,reject) => {
+                    let xhr = new XMLHttpRequest;
+                    xhr.open('POST', '/pages/3dmodel/data.json', false);
 
-                    }
-                }
-            }
+                    xhr.onload = function() {
+                          if (this.status == 200) {
+                            resolve(this.response);
+
+
+
+
+                          } else {
+                            var error = new Error(this.statusText);
+                            error.code = this.status;
+                            reject(error);
+                          }
+                        };
+
+                        xhr.onerror = function() {
+                          reject(new Error("Network Error"));
+                        };
+
+                    xhr.send();
+
+                });
+            
+            result
+              .then(
+                function(result) {
+                        let ResultArr = JSON.parse(result);
+                            console.log(ResultArr);
+                          for (var x=0; x<=l; x=x+ub) {
+                                        //Проходимся циклом по ширине
+                                        for (var y=0; y<=w; y=y+ub) {
+                                            //Проходимся циклом по глубине
+                                            for (var z=0; z<d; z=z+ub) {
+                                                //Цвет
+                                              
+                                               var dd = ResultArr[x][y][z];
+                                                var c = 0xFFFFFF;
+                                                var xxx=0;
+                                                c = 0xff0000;
+                                                xxx=0;
+
+                                                var zzzzz=dd[0];
+
+                                                
+                                               if(zzzzz==1){
+                                                c = 0xc6c44d;
+                                                xxx=25;
+                                                if(dd[2]>0) {
+                                                        c = 0x000066;
+                                                        xxx=dd[2];
+                                                     //Отрисовать
+                                                    //}
+                                               //c=0xff0000;        
+                                                };
+                                                draw(y,x,d-z-1,c,xxx,ub); 
+                                            };    
+                                                
+
+                                                 
+
+                                            }
+                                        }
+                            }
+            
+
+                } 
+                
+              );
+
+
+           
+
             console.timeEnd('q');
             //Рендерим
             render();
@@ -290,6 +338,8 @@ function render() {
     }
 
 }
+
+
 //По кнопке ПРОСМОТР запускам функцию построения модели
 
  btnView.on('click',buildModel);
