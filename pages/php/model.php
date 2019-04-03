@@ -100,18 +100,56 @@
  			
  		};
 
-			
-		// интерполяция значений м\у скважинами
-			$dz=1; // Z step of model 
- 			$dx=5; // distance betwen holes X
- 			$dy=5; // distance betwen holes Y
- 			$n = 5; // шаг модели между скважинами   ***********  $n=$dx/$unitb;
+			$queryDx ="SELECT DISTINCT  `hole`.`x` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
+			$resultDx = mysqli_query($link, $queryDx) or die("Ошибка 4 - Нет связи с таблицами hole" . mysqli_error($link));
+            $count=0;
+			while ($rowDx = mysqli_fetch_array($resultDx))
+ 			{
+ 				$count=$count+1;
+ 				$xx[$count]=$rowDx['x'];
+ 			};    
+
+
+			$dx = abs($xx[1] - $xx[2]);
+			for($i = 1 ; $i <$count; $i++) {
+				for($j = $i+1; $j <=$count; $j++) {
+					if($dx > abs($xx[$i] - $xx[$j])) {
+						$dx = abs($xx[$i] - $xx[$j]);
+					};	
+				};	
+			};
+
+
+
+			$queryDy ="SELECT DISTINCT  `hole`.`y` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
+			$resultDy = mysqli_query($link, $queryDy) or die("Ошибка 4 - Нет связи с таблицами hole" . mysqli_error($link));
+            $count=0;
+			while ($rowDy = mysqli_fetch_array($resultDy))
+ 			{
+ 				$count=$count+1;
+ 				$yy[$count]=$rowDy['y'];
+ 			};    
+
+
+			$dy = abs($yy[1] - $yy[2]);
+			for($i = 1 ; $i <$count; $i++) {
+				for($j = $i+1; $j <=$count; $j++) {
+					if($dy > abs($yy[$i] - $yy[$j])) {
+						$dy = abs($yy[$i] - $yy[$j]);
+					};	
+				};	
+			};
+
+			// интерполяция значений м\у скважинами
+			$dz=$unitb; // Z step of model 
+ 			//$dx=5; // distance betwen holes X
+ 			//$dy=5; // distance betwen holes Y
  			$el=0;
  			$el2=2;
 
 function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 //$block_perc[2] [2] [2] [$el] = 1;
-echo "123";
+//echo "123";
 //return $block_perc[$x] [$y] [$z][$el];
 // Проход по Х 				$block_perc[$xx] [$y] [$z] [$el] = $kk;
  			for ($y=0; $y<=$w; $y=$y+$dy)
@@ -176,7 +214,18 @@ echo "123";
 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb,$el2);
 
 // */ 
- 			$json_data = json_encode($block_perc);
+		$queryClr = "SELECT DISTINCT clr from `hole`, `core`, `linkcm`, `mine` where `hole`.`nfield` =".$nfield." and `hole`.`idhole` = `core`.`idhole` and `core`.`idcore` = `linkcm`.`idcore` and `linkcm`.`idmine` = `mine`.`idmine`";
+
+		$resultClr = mysqli_query($link, $queryClr) or die("Ошибка 444 - Нет связи с таблицами core, hole, linkcm" . mysqli_error($link));
+		$clrArr = mysqli_fetch_array($resultClr);
+		$Clr = $clrArr['clr'];
+			//echo $Clr;
+		
+			$arrayData = array(
+			  2 => $block_perc,
+			  3 => $Clr
+			);
+ 			$json_data = json_encode($arrayData);
 	        $fd = fopen("data.json", 'w') or die("не удалось создать файл");
 			$str = $json_data;
 			fwrite($fd, $str);

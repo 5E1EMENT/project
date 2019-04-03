@@ -271,6 +271,7 @@ function render() {
               .then(
                 function(result) {
                         let ResultArr = JSON.parse(result);
+                            console.log(ResultArr[2]);
                             console.log(ResultArr);
                           for (var x=0; x<=l; x=x+ub) {
                                         //Проходимся циклом по ширине
@@ -279,7 +280,7 @@ function render() {
                                             for (var z=0; z<d; z=z+ub) {
                                                 //Цвет
                                               
-                                               var dd = ResultArr[x][y][z];
+                                               var dd = ResultArr[2][x][y][z];
                                                 var c = 0xFFFFFF;
                                                 var xxx=0;
                                                 c = 0xff0000;
@@ -292,7 +293,7 @@ function render() {
                                                 c = 0xc6c44d;
                                                 xxx=25;
                                                 if(dd[2]>0) {
-                                                        c = 0x000066;
+                                                        c = ResultArr[3];
                                                         xxx=dd[2];
                                                      //Отрисовать
                                                     //}
