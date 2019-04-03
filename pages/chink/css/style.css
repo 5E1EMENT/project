@@ -1,0 +1,142 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('../../../img/congruent_outline.png') center center ;
+    -webkit-background-size: 20%;
+    background-size: 20%;
+}
+.wrapper {
+    width:100%;
+    padding: 10px 0;
+    background: url('../../../img/congruent_outline.png') center center ;
+    -webkit-background-size: 20%;
+    background-size: 20%;
+}
+.table {
+    text-align: center;
+    display: inline-block;
+    background-color: gray !important;
+
+    color: #000;
+}
+.table-responsive {
+    text-align: center;
+    display: inline-block;
+
+    color: #000;
+}
+table {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+
+table th, table td {
+
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+
+table th {
+    color: #fff;
+    background-color: #444;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px !important;
+    vertical-align: middle !important;
+}
+.title {
+    font-size: 36px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: brown;
+    text-transform: uppercase;
+    font-family: Kabel;
+
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+    padding-bottom: 10px;
+    border-bottom: 5px solid black;
+
+}
+.mainscreen-logo {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 3%;
+    top: 10px;
+}
+.mainscreen-logo-arrow {
+
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 10%;
+    top: 10px;
+}
+th {
+    border: 1px solid black !important;
+}
+td {
+    border: 1px solid black !important;
+}
+.btn_open_chink {
+    margin-top: 10px;
+}
+
+#live_data_core {
+    position: relative;
+    display: none;
+    margin-top: 20px;
+}
+.live_data-close{
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right:  -20px;
+    top: -20px;
+    cursor: pointer;
+}
+.live_data-close::after{
+    display: block;
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 2px;
+    background: #000;
+    transform: rotate(-45deg) translate(-34%,-324%);
+    cursor: pointer;
+    left: 50%;
+    top: 50%;
+
+}
+.live_data-close::before{
+    display: block;
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 2px;
+    background: #000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+
+    cursor: pointer;
+}
+.active-table {
+    display: block !important;
+}

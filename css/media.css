@@ -1,0 +1,26 @@
+@media screen and (max-height: 632px) {
+  .content-item {
+	  height: 150px;
+  }
+}
+@media screen and (max-width: 991px) {
+    html{
+        height: auto;
+    }
+    .content-item {
+        width: 600px;
+        height: 40vh;
+    }
+    .mainscreen-logo {
+        display: none;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .logo-main-desc {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .logo-desc {
+
+    }
+}
