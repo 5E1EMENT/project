@@ -96,9 +96,29 @@
  			  	$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [0]= 1;
  			  	$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [2]= $row["perc"];
  			  	//$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [0]]= 1;
+
 			}; 	
  			
  		};
+
+ 		$query ="SELECT DISTINCT  `hole`.`x`,`hole`.`y`,`hole`.`z` FROM `hole` WHERE `hole`.`nfield`=".$nfield;
+ 	   $result = mysqli_query($link, $query) or die("Ошибка 222 - Нет связи с таблицами hole" . mysqli_error($link));
+ 	   $i=0;
+ 	   while ($row = mysqli_fetch_array($result))
+ 		{
+ 			++$i;
+ 			$arrayHole[$i] = array($row['x'],$row['y']);
+ 		};
+ 		// $arrayData = array(
+			//   2 => $block_perc,
+			//   3 => $Clr
+			// );
+
+ 		$json_data = json_encode($arrayHole);
+	        $fd = fopen("dataHole.json", 'w') or die("не удалось создать файл");
+			$str = $json_data;
+			fwrite($fd, $str);
+			fclose($fd);
 
 			$queryDx ="SELECT DISTINCT  `hole`.`x` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
 			$resultDx = mysqli_query($link, $queryDx) or die("Ошибка 4 - Нет связи с таблицами hole" . mysqli_error($link));
@@ -213,6 +233,32 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb, $el);
 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb,$el2);
 
+		//Создание высот топоосновы
+		for ($x=0; $x<=$l; $x=$x+$unitb)
+ 			{
+ 				for ($y=0; $y<=$w; $y=$y+$unitb)
+ 				{
+ 					$topoBase[$x][$y] = 0;
+ 					for ($z=$unitb; $z<$d; $z=$z+$unitb)
+ 				    {
+ 						echo $block_perc[$x] [$y] [$z] [0];
+ 						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1) {
+ 							
+ 							$topoBase[$x][$y] = $z;
+ 						};
+ 						
+ 					};	
+ 								
+ 				};
+ 			};
+
+			$arrayDataTop = $topoBase;
+ 			$json_dataTop = json_encode($arrayDataTop);
+	        $fdTop = fopen("dataTopoBase.json", 'w') or die("не удалось создать файл топоосновы");
+			$strTop = $json_dataTop;
+			fwrite($fdTop, $strTop);
+			fclose($fdTop);
+
 // */ 
 		$queryClr = "SELECT DISTINCT clr from `hole`, `core`, `linkcm`, `mine` where `hole`.`nfield` =".$nfield." and `hole`.`idhole` = `core`.`idhole` and `core`.`idcore` = `linkcm`.`idcore` and `linkcm`.`idmine` = `mine`.`idmine`";
 
@@ -232,6 +278,8 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 			fclose($fd);
 			
 		$c=2;	
+
+
 		// запись блоков в таблицу
  		for ($x=0; $x <=$l; ($x=$x+$unitb)) 
  		{ 
@@ -317,7 +365,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  		<table  class='table table-bordered'> 
  		<thead>
  			<tr>
- 		<th>Имя модели</th><th>Номер Модели</th><th>Длина</th><th>Высота</th><th>Ширина</th><th>Размер блока</th><th class='model-form__view'></th><th class='model-form__delete'></th></tr>
+ 		<th>Имя модели</th><th>Номер Модели</th><th>Длина</th><th>Высота</th><th>Ширина</th><th>Размер блока</th><th class='model-form__view'>Просмотр модели</th><th class='model-form__topa'>Просмотр топаосновы</th><th class='model-form__delete'></th></tr>
 		</thead>
 		<tbody>
  		";
@@ -337,22 +385,12 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  			$table.= $row['unitb'];
  			$table.= "</td>";
  			$table.="<td><input type='button' class='btn btn-xs btn-success btn_view' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."' value='Просмотр' /> </td>";
+ 			$table.="<td><input type='button' class='btn btn-xs btn-success btn_view_topa' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."' value='Просмотр' /> </td>";
  			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='Удалить'/> </td>";
  		};
  	$table.= "</tbody></table></div><br>";
  	$table.="</form><input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
- 	echo $table, "<div class='canvas-wrapper'>
-        <label for='tbase'>Топаоснова</label>
- 		    <input type='checkbox' name='tbase' checked='checked'>
- 		<label for='minerals'>Полезные ископаемые</label> 
-		    <input type='checkbox' name='minerals' checked='checked'>
-		<label for='hydro'>Гидрогеология</label>
-		    <input type='checkbox' name='hydro'>
-		<label for='3d'>3D</label>
-		    <input type='checkbox' name='3d' checked='checked'>
-		<label for='2d'>2D</label>
-		    <input type='checkbox' name='2d'>
-		</div>";
+ 	echo $table;
  	
 
  	};

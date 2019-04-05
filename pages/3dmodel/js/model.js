@@ -273,6 +273,7 @@ function render() {
                         let ResultArr = JSON.parse(result);
                             console.log(ResultArr[2]);
                             console.log(ResultArr);
+                            let perc = 0; //Минимальный процент отображения ПИ
                           for (var x=0; x<=l; x=x+ub) {
                                         //Проходимся циклом по ширине
                                         for (var y=0; y<=w; y=y+ub) {
@@ -283,16 +284,15 @@ function render() {
                                                var dd = ResultArr[2][x][y][z];
                                                 var c = 0xFFFFFF;
                                                 var xxx=0;
-                                                c = 0xff0000;
                                                 xxx=0;
 
                                                 var zzzzz=dd[0];
 
                                                 
                                                if(zzzzz==1){
-                                                c = 0xc6c44d;
+                                                //c = 0xc6c44d;
                                                 xxx=25;
-                                                if(dd[2]>0) {
+                                                if(dd[2]>perc) {
                                                         c = ResultArr[3];
                                                         xxx=dd[2];
                                                      //Отрисовать
