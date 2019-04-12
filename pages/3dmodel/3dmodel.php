@@ -27,7 +27,7 @@ ob_start();
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body >
    <a href="/">
         <img src="img/home-icon-silhouette.svg" class="mainscreen-logo">
     </a>
@@ -46,6 +46,8 @@ ob_start();
 
 
    <div class="div"></div>
+   <!--Обёртка топаосновы-->
+   <div class="wrapper-topa"></div>
    <!-- Preloader -->
    <div class="loading-area">
    <div class="loading-box"><h2 class="loading-area__text">3D модель строится</h2></div>
@@ -78,6 +80,7 @@ ob_start();
            crossorigin="anonymous"></script>
 
    <script src="js/mymodal.js"></script>
+   
    <script src="js/three.js"></script>
    <script src="js/Detector.js"></script>
    <script src="js/Stats.js"></script>
@@ -89,6 +92,7 @@ ob_start();
    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
 
    <script src="js/model.js"></script>
+   <script src="js/topa.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- <script src="js/mymodal.js"></script>-->
 

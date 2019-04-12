@@ -1,3 +1,4 @@
+
 .container {
     position: relative;
     max-width: 1200px;
@@ -118,6 +119,7 @@ td {
 .btn_add_model {
     display: block !important;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .canvas-wrapper {

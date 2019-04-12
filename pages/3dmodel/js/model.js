@@ -36,8 +36,12 @@ function init() {
 
         renderer = new THREE.WebGLRenderer({
             //Сглаживание
-            antialias: true
+            antialias: true,
+            alpha: true //Для прозрачности
         });
+
+        //Для прозрачности
+        //renderer.sortObjects = false
 
         //Высота
         height = window.innerHeight-(window.innerHeight/10);
@@ -177,10 +181,10 @@ function draw(x,y,z,color,pi,ub) {
         scene.add(cube);
 
         //Цвет обводки
-        var hex = 0x000000;
-        var bbox = new THREE.BoundingBoxHelper(cube, hex);
-        bbox.update();
-        scene.add(bbox);
+        // var hex = 0x000000;
+        // var bbox = new THREE.BoundingBoxHelper(cube, hex);
+        // bbox.update();
+        // scene.add(bbox);
         //После выполнения отрисовки, убираем прелоадер
         loadingArea.removeClass('active-loader');
 
@@ -271,7 +275,9 @@ function render() {
               .then(
                 function(result) {
                         let ResultArr = JSON.parse(result);
+                            console.log(ResultArr[2]);
                             console.log(ResultArr);
+                            let perc = 0; //Минимальный процент отображения ПИ
                           for (var x=0; x<=l; x=x+ub) {
                                         //Проходимся циклом по ширине
                                         for (var y=0; y<=w; y=y+ub) {
@@ -279,20 +285,19 @@ function render() {
                                             for (var z=0; z<d; z=z+ub) {
                                                 //Цвет
                                               
-                                               var dd = ResultArr[x][y][z];
-                                                var c = 0xFFFFFF;
+                                               var dd = ResultArr[2][x][y][z];
+                                                var c = 0xC6A664;
                                                 var xxx=0;
-                                                c = 0xff0000;
                                                 xxx=0;
 
                                                 var zzzzz=dd[0];
 
                                                 
                                                if(zzzzz==1){
-                                                c = 0xc6c44d;
+                                                //c = 0xc6c44d;
                                                 xxx=25;
-                                                if(dd[2]>0) {
-                                                        c = 0x000066;
+                                                if(dd[2]>perc) {
+                                                        c = ResultArr[3];
                                                         xxx=dd[2];
                                                      //Отрисовать
                                                     //}
