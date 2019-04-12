@@ -42,19 +42,20 @@ topaBtn.addEventListener('click', function () {
         xhr.send();
     });
 
+    //
     result
       .then(
         function(result) {
             let ResultArr = JSON.parse(result);
-                //console.log(ResultArr);
+                console.log(ResultArr);
 
-               for(item in ResultArr) {
+               for (item in ResultArr) {
                		//console.log(item);
                	//while(item) {
                		var dd=ResultArr[item];
                		var x=dd[0];
                		var y=dd[1];
-               		 console.log('x:',x,'y:',y);
+               		 //console.log('x:',x,'y:',y);
                 	ctx.beginPath();
                 	ctx.arc(x*k+5,w*k+5 - y*k, 2, 0, Math.PI * 2, true); // Outer circle
 				    ctx.stroke();
@@ -65,6 +66,76 @@ topaBtn.addEventListener('click', function () {
 
         } 
       );
+
+ let result_z =  new Promise ( (resolve,reject) => {
+        let xhr = new XMLHttpRequest;
+        xhr.open('POST', '/pages/3dmodel/dataTopoBase.json', false);
+        xhr.onload = function() {
+              if (this.status == 200) {
+                resolve(this.response);
+              } else {
+                var error = new Error(this.statusText);
+                error.code = this.status;
+                reject(error);
+              }
+            };
+
+        xhr.onerror = function() {
+          reject(new Error("Network Error"));
+        };
+        xhr.send();
+    })
+ .then(
+
+ 	 function(result_z) {
+            let ResultArr = JSON.parse(result_z);
+                console.log("RESULT_Topo:",ResultArr);
+
+               for (var x=0; x<l; x=x+ub) {
+                    //Проходимся циклом по ширине
+		            for (var y=0; y<w; y=y+ub) {
+		            	if(ResultArr[x][y] !== ResultArr[x+1][y]) {
+		            		ctx.beginPath();
+		            		ctx.moveTo((x+1)*k+5,w*k+5 - (y)*k);
+		            		ctx.lineTo((x+1)*k+5,w*k+5 - (y+1)*k);
+				   		    ctx.stroke();
+		            	}
+
+		            	if(ResultArr[x][y] !== ResultArr[x][y+ub]) {
+		            		ctx.beginPath();
+		            		ctx.moveTo(x*k+5,w*k+5 - (y+ub)*k);
+		            		ctx.lineTo((x+ub )*k+5,w*k+5 - (y+ub)*k);
+				   		    ctx.stroke();
+		            	}  
+
+
+		            }
+                }
+
+             //    for (var y=0; y<=w; y=y+ub) { //for x=l
+		           //  	if(ResultArr[d-ub][y] !== ResultArr[d][y]) 
+		           //  	{
+		           //  		ctx.beginPath();
+		           //  		ctx.moveTo((l)*k+5,w*k+5 - (y)*k);
+		           //  		ctx.lineTo((l)*k+5,w*k+5 - (y+ub)*k);
+				   		    // ctx.stroke();
+		           //  	}
+		           //  }
+
+		           //  for (var x=0; x<=l; x=x+ub) {// for y=w
+		           //  	   if(ResultArr[x][w] !== ResultArr[x][w-ub]) {
+		           //  		ctx.beginPath();
+		           //  		ctx.moveTo(x*k+5,w*k+5 - (w)*k);
+		           //  		ctx.lineTo((x+ub)*k+5,w*k+5 - (w)*k);
+				   		    // ctx.stroke();
+		           //  	}
+		           // }
+
+               
+
+
+        } )
+
 
 	
 

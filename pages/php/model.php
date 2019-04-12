@@ -114,11 +114,13 @@
 			//   3 => $Clr
 			// );
 
- 		$json_data = json_encode($arrayHole);
+ 			$json_data = json_encode($arrayHole);
 	        $fd = fopen("dataHole.json", 'w') or die("не удалось создать файл");
 			$str = $json_data;
 			fwrite($fd, $str);
 			fclose($fd);
+
+
 
 			$queryDx ="SELECT DISTINCT  `hole`.`x` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
 			$resultDx = mysqli_query($link, $queryDx) or die("Ошибка 4 - Нет связи с таблицами hole" . mysqli_error($link));
@@ -168,9 +170,7 @@
  			$el2=2;
 
 function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
-//$block_perc[2] [2] [2] [$el] = 1;
-//echo "123";
-//return $block_perc[$x] [$y] [$z][$el];
+
 // Проход по Х 				$block_perc[$xx] [$y] [$z] [$el] = $kk;
  			for ($y=0; $y<=$w; $y=$y+$dy)
  			{
@@ -232,16 +232,40 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb, $el);
 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb,$el2);
 
+
+		// for ($x=0; $x <=$l; $x=$x+$unitb) 
+		// { 
+		// 	for ($y=0; $y <=$w; $y=$y+$unitb)
+		// 	{
+		// 		$hz[$x][$y] = 0;	
+		// 	 for ($z=0; $z<$d;$z=$z+$unitb)
+  // 	    		{
+		// 	  			if ($block_perc[$x] [$y] [$z] [0] = 0 && $block_perc[$x] [$y] [$z+1] [0] = 1) {
+ 	// 				$hz[$x][$y] = $z+1; ///////////////////////////// Править по block perc
+ 	// 				};
+ 	// 			};
+ 	// 		};
+		// 	};
+
+		// $json_data_z = 	json_encode($hz);
+		// $fd_z = fopen("data_z.json", 'w') or die("не удалось создать файл");
+		// $str_z = $json_data_z;
+		// fwrite($fd_z, $str_z);
+		// fclose($fd_z);
+
+
 		//Создание высот топоосновы
 		for ($x=0; $x<=$l; $x=$x+$unitb)
  			{
  				for ($y=0; $y<=$w; $y=$y+$unitb)
  				{
  					$topoBase[$x][$y] = 0;
- 					for ($z=$unitb; $z<$d; $z=$z+$unitb)
+ 					for ($z=$unitb; $z<=$d; $z=$z+$unitb)
  				    {
  						//echo $block_perc[$x] [$y] [$z] [0];
- 						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1) {
+ 						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1)
+ 							
+ 						 {
  							
  							$topoBase[$x][$y] = $z;
  						};
@@ -277,6 +301,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 			fclose($fd);
 			
 		$c=2;	
+
 
 
 		// запись блоков в таблицу
