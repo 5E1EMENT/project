@@ -87,8 +87,8 @@ function init() {
         //Функция отрисовки сетки
     (function grid(size) {
         var gridXZ = new THREE.GridHelper(gridL, size/ub);
-        //Функция проверки на чётность длины модели
 
+        //Функция проверки на чётность длины модели
         const even = n => !(n % 2);
         //Позиция сетки
         var gPositionY = ub/2;//Смещение по высоте
@@ -202,10 +202,11 @@ function initLight() {
 
 //Создаем орбиту вращения куба
 function createOrbit() {
-
     control = new THREE.OrbitControls(camera, renderer.domElement);
     control.enableZoom = true
-    control.update();
+    control.maxDistance = 500
+    control.update()
+
 
 }
 //Создаем функцию рендера
@@ -286,7 +287,7 @@ function render() {
                                                 //Цвет
                                               
                                                var dd = ResultArr[2][x][y][z];
-                                                var c = 0xC6A664;
+                                                var c = 0x8A6642;
                                                 var xxx=0;
                                                 xxx=0;
 

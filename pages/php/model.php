@@ -240,7 +240,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  					$topoBase[$x][$y] = 0;
  					for ($z=$unitb; $z<$d; $z=$z+$unitb)
  				    {
- 						echo $block_perc[$x] [$y] [$z] [0];
+ 						//echo $block_perc[$x] [$y] [$z] [0];
  						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1) {
  							
  							$topoBase[$x][$y] = $z;
