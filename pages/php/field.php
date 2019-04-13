@@ -24,9 +24,21 @@ mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
 };
 $N = mysqli_query($link, 'SELECT nfield, namefield , x ,y,z,l,d,w from field') or die("Ошибка " . mysqli_error($N));
 $input_field = "<input class ='add_field' type='submit' value='Добавить'/>";
-$table = "<table border='1' class='table_field'><tr><td>Номер месторождения</td><td>Имя месторождения</td><td>X</td><td>Y</td><td>Z</td><td>L</td><td>D</td><td>W</td>";
+$table = "<table border='1' class='table_field table'>
+    <thead class='thead-dark'>
+        <tr>
+            <th scope='col'>Номер месторожденияs</th>
+            <th scope='col'>Имя месторождения</th>
+            <th scope='col'>X</th>
+            <th scope='col'>Y</th>
+            <th scope='col'>Z</th>
+            <th scope='col'>L</th>
+            <th scope='col'>D</th>
+            <th scope='col'>W</th>
+        </tr>
+    </thead>";
 while ($row = mysqli_fetch_array($N)) {
-    $table.="<tr><td>";
+    $table.="<tbody><td>";
     $table.=$row['nfield'];
     $table.="</td><td>";
     $table.=$row['namefield'];
@@ -44,7 +56,7 @@ while ($row = mysqli_fetch_array($N)) {
     $table.=$row['w'];
     $table.="</td></tr>";
 };
-$table.="</table>";
+$table.="</tbody></table>";
 echo $table;
 echo $input_field;
 //закрываем подключение
