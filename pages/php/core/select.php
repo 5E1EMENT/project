@@ -42,7 +42,7 @@ $output .= '
       <div class="table-responsive field-core_table">
           <div class="field-core_table-close"></div>  
            <table class="table table-bordered">
-           <thead>
+           <thead class="thead-dark">
                 <tr>  
                     <!-- <th >Id</th>-->
                      <th >Номер керна</th>

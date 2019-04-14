@@ -28,9 +28,9 @@
  	//mysql_free_result($result);
  	echo $temp;
  	echo '</select>';
- 	echo '<input type="submit" class="btn btn-lg btn-info btn_add" name="sel_field" value="Открыть модели месторождения"/>';
+ 	echo '<input type="submit" class="btn btn-lg btn-primary btn_add" name="sel_field" value="Открыть модели месторождения"/>';
 
- 	echo '</form><BR>';
+ 	echo '</form>';
 
 
  
@@ -241,7 +241,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  					$topoBase[$x][$y] = 0;
  					for ($z=$unitb; $z<$d; $z=$z+$unitb)
  				    {
- 						echo $block_perc[$x] [$y] [$z] [0];
+ 						//echo $block_perc[$x] [$y] [$z] [0];
  						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1) {
  							
  							$topoBase[$x][$y] = $z;
@@ -360,12 +360,20 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  // ini_set('display_errors',1);
  // error_reporting(E_ALL);
 
- 		$table = "<div class='form-wrapper'><form action='3dmodel.php' method='GET' id='model-form' class='model-form'> 
- 		<div class='table-responsive'> 
- 		<table  class='table table-bordered'> 
- 		<thead>
- 			<tr>
- 		<th>Имя модели</th><th>Номер Модели</th><th>Длина</th><th>Высота</th><th>Ширина</th><th>Размер блока</th><th class='model-form__view'>Просмотр модели</th><th class='model-form__topa'>Просмотр топаосновы</th><th class='model-form__delete'></th></tr>
+ 		$table = "
+ 		<div class='table table-responsive model-table'> 
+ 		<table class='table-bordered'> 
+ 		<thead class='thead-dark'>
+ 		<tr>
+ 		<th scope='col'>№ Модели</th>
+ 		<th scope='col'>Номер</th>
+ 		<th scope='col'>Длина</th>
+ 		<th scope='col'>Высота</th>
+ 		<th scope='col'>Ширина</th>
+ 		<th scope='col'>Размер блока</th>
+ 		<th class='model-form__view' scope='col'>Модель</th>
+ 		<th class='model-form__topa' scope='col'>Топаоснова</th>
+ 		<th class='model-form__delete' scope='col'>Редактировать</th></tr>
 		</thead>
 		<tbody>
  		";
@@ -384,12 +392,12 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  			$table.="</td><td class='ub' data-ub='".$row['unitb']."'>";
  			$table.= $row['unitb'];
  			$table.= "</td>";
- 			$table.="<td><input type='button' class='btn btn-xs btn-success btn_view' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."' value='Просмотр' /> </td>";
- 			$table.="<td><input type='button' class='btn btn-xs btn-success btn_view_topa' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."' value='Просмотр' /> </td>";
- 			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='Удалить'/> </td>";
+ 			$table.="<td><div class='btn_view' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."'/></div> </td>";
+ 			$table.="<td><div class='btn_view_topa' data-nmod='".$row['nmod']."' name='view_".$row['nmod']."'></div></td>";
+ 			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='X'/> </td>";
  		};
- 	$table.= "</tbody></table></div><br>";
- 	$table.="</form><input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
+ 	$table.= "</tbody></table>";
+ 	$table.="<input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
  	echo $table;
  	
 

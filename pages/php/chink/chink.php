@@ -7,15 +7,15 @@ require_once 'connection.php'; // подключаем скрипт
 
 // подключаемся к серверу
 $link = mysqli_connect($host, $user, $password, $database)
-or die("Ошибка 0. Нет подключения к БД" . mysqli_error($link));
+or die("Ошибка 0. Нет подключения к Базе данных" . mysqli_error($link));
 
 // выполняем операции с базой данных
 $query ="SELECT nfield, namefield FROM field";
 $result = mysqli_query($link, $query) or die("Ошибка 1 - Нет связи с таблицей nfield" . mysqli_error($link));
 
 // Выбор месторождения - ниспадающий список месторожденией из базы и кнопка
-echo '<form action ="chink.php" method="GET">';
-echo '<select class="form-control form-control-lg" name="sel1" >';
+echo '<div class="chink_wrapper>"<form action ="chink.php" method="GET">';
+echo '<select class="form-control form-control-lg chink-select" name="sel1" >';
 $temp = '<option> Выберите месторождение </option>';
 while ($row = mysqli_fetch_array($result))
 {
@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($result))
 //mysql_free_result($result);
 echo $temp;
 echo '</select>';
-echo '<center><input type="submit" class="btn btn-lg btn-info btn_open_chink" name="sel_chink" value="Открыть скважины"/></center>';
+echo '<center><input type="submit" class="btn btn-lg btn-primary btn_open_chink" name="sel_chink" value="Открыть скважины"/></center>';
 
 echo '</form><BR>';
 
@@ -114,10 +114,20 @@ if (isset($_GET['sel1']) || isset($_SESSION['nf']))
 
     $table = "<form action='chink.php' method='GET'> 
  		<div class='table-responsive'> 
- 		<table  class='table table-bordered'> 
- 		<thead>
- 			<tr>
- 		<th>Id</th><th>Номер скважины</th><th>Х координата</th><th>Y координатаа</th><th>Z координата</th><th>Угол Альфа</th><th>Угол Бета</th><th>Глубина</th><th>Керны</th><th>Редактировать</th></tr>
+ 		<table  class='table table-responsive'> 
+ 		<thead class='thead-dark'>
+ 		<tr>
+ 		<th scope='col'>Id</th>
+ 		<th scope='col'>Номер скважины</th>
+ 		<th scope='col'>Х координата</th>
+ 		<th scope='col'>Y координатаа</th>
+ 		<th scope='col'>Z координата</th>
+ 		<th scope='col'>Угол Альфа</th>
+ 		<th scope='col'>Угол Бета</th>
+ 		<th scope='col'>Глубина</th>
+ 		<th scope='col'>Керны</th>
+ 		<th scope='col'>Редактировать</th>
+ 		</tr>
 		</thead>
 		<tbody>
  		";
@@ -140,14 +150,14 @@ if (isset($_GET['sel1']) || isset($_SESSION['nf']))
         $table.="</td><td>";
         $table.= $row['d'];
         $table.="</td>";
-        $table.="<td><button type=\"button\" name=\"btn_core\"  class=\"btn btn-xs btn-success btn_core\">Просмотреть</button></td>";
-        $table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nhole']."' value='Удалить'/> </td></tr>";
+        $table.="<td><div  name=\"btn_core\"  class=\"btn_core\"></div></td>";
+        $table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nhole']."' value='X'/> </td></tr>";
     };
     //<input type='submit' class='btn btn-xs btn-success btn_add' name='view_".$row['nhole']."' value='Просмотр'/>
-    $table.= "</tbody></table></div><br>";
+    $table.= "</tbody></table></div>";
     $table.="</form>";
     echo $table;
-    echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_hole' name='add1' id='btn_add_hole' value='Добавить новую скважину'/>";
+    echo "<input type='submit' class='btn btn-lg btn-success btn_add btn_add_hole' name='add1' id='btn_add_hole' value='Добавить скважину'/></div>";
 
 };
 
