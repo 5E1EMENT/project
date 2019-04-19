@@ -111,11 +111,6 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   color: #FA8043;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
-  flex-wrap: wrap;
   justify-content: center;
   padding: 20px 0;
   padding-bottom: 0;
@@ -123,8 +118,8 @@ body {
 
 .content-item {
   width: 400px;
-  height: 30vh;
-  margin: 0 20px;
+  height: 50vh;
+  margin: 0 10px;
   list-style: none;
   margin-bottom: 40px;
   display: -webkit-flex;
