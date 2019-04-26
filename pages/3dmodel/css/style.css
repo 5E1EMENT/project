@@ -1,5 +1,6 @@
 .container {
     position: relative;
+
     margin: 0 auto;
     width:100%;
     overflow: hidden;
@@ -38,6 +39,7 @@ body {
 .wrapper {
     width:100%;
     padding: 10px 0;
+
     text-align: center;
     padding: 10px;
     background:linear-gradient(rgba(7,2,35,0.5), #1C4D95);
@@ -79,6 +81,7 @@ select[name="sel1"] {
     font-family: Lato;
     color: #fff;
 
+
 }
 .mainscreen-logo {
     width: 40px;
@@ -100,6 +103,7 @@ select[name="sel1"] {
     float: right;
     width: 260px;
     margin-top: 10px;
+
 }
 
 .canvas-wrapper {

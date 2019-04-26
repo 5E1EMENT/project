@@ -14,6 +14,7 @@
                      <th scope="col">Название полезного ископаемого</thsc>
                      <th scope="col">Цвет отображения</th>
                      <th scope="col">Добавить</th>
+
                 </tr>
                  </thead>
                  <tbody>';

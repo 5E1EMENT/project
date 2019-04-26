@@ -24,6 +24,7 @@ echo '</select>';
 echo '<input type="submit" class="btn btn-xs btn-success btn_add" name="sel_field" value="Открыть модели месторождения"/><br><br>';
 echo '</form>';
 
+
 // 3 Выбор 3Д модели в ниcпадающий список №2 и кнопка "Открыть разрезы и карты"
 // 3.1 Проверяем наличие переданного fieldname в методе GET
 if (isset($_GET['sel1'])) 
@@ -61,6 +62,7 @@ echo $temp;
 echo '</select>';
 echo '<input type="submit" class="btn btn-xs btn-success btn_add" name="sel_field" value="Открыть разрезы и карты"/> <br><br>';
 echo '</form>';
+
 
 // 4 Добавление нового разреза или карты в таблицу
 if (isset($_GET["namemap"])&&isset($_GET["coordinate"])&&(isset($_GET["rbx"])||isset($_GET["rby"])||isset($_GET["rbz"])))
@@ -327,6 +329,7 @@ $table = "<form action='3dcut.php' class='form_cut' method='GET'>
           <td></td>
           <td></td>
           </tr>";
+
 while ($row = mysqli_fetch_array($result)) 
 {
 	$table.="<tr><td>";

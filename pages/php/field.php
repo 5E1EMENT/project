@@ -39,6 +39,7 @@ $table = "<table border='1' class='table_field table'>
     </thead>";
 while ($row = mysqli_fetch_array($N)) {
     $table.="<tbody><td>";
+
     $table.=$row['nfield'];
     $table.="</td><td>";
     $table.=$row['namefield'];
@@ -57,6 +58,7 @@ while ($row = mysqli_fetch_array($N)) {
     $table.="</td></tr>";
 };
 $table.="</tbody></table>";
+
 echo $table;
 echo $input_field;
 //закрываем подключение

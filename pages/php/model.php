@@ -28,9 +28,11 @@
  	//mysql_free_result($result);
  	echo $temp;
  	echo '</select>';
- 	echo '<input type="submit" class="btn btn-lg btn-primary btn_add" name="sel_field" value="Открыть модели месторождения"/>';
 
- 	echo '</form>';
+ 	echo '<input type="submit" class="btn btn-lg btn-info btn_add" name="sel_field" value="Открыть модели месторождения"/>';
+
+ 	echo '</form><BR>';
+
 
 
  
@@ -70,6 +72,8 @@
  				for ($z=0; $z <$d; $z=$z+$unitb)
 				{
  					$block_perc[$x] [$y] [$z] [0] = 0;///Topo Основа
+
+ 					$block_perc[$x] [$y] [0] [1] = 0;///Карта высот
  					$block_perc[$x] [$y] [$z] [2] = 0;/// Pi
 
  				};
@@ -93,18 +97,23 @@
  			
        	    for ($zz=0; $zz<$row["l"];$zz=$zz+1)
       	    {
- 			  	$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [0]= 1;
- 			  	$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [2]= $row["perc"];
+
+  			  	$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [2]= $row["perc"];
  			  	//$block_perc[$row["x"]] [$row["y"]] [$row["z"]+$nt+$zz] [0]]= 1;
 
 			}; 	
+ 			$block_perc[$row["x"]] [$row["y"]] [0] [1] = $row["z"];
+ 			//echo $block_perc[$row["x"]] [$row["y"]] [0] [1];
+
  			
  		};
 
  		$query ="SELECT DISTINCT  `hole`.`x`,`hole`.`y`,`hole`.`z` FROM `hole` WHERE `hole`.`nfield`=".$nfield;
- 	   $result = mysqli_query($link, $query) or die("Ошибка 222 - Нет связи с таблицами hole" . mysqli_error($link));
- 	   $i=0;
- 	   while ($row = mysqli_fetch_array($result))
+
+ 	   	$result = mysqli_query($link, $query) or die("Ошибка 222 - Нет связи с таблицами hole" . mysqli_error($link));
+ 	   	$i=0;
+ 	   	while ($row = mysqli_fetch_array($result))
+
  		{
  			++$i;
  			$arrayHole[$i] = array($row['x'],$row['y']);
@@ -114,11 +123,16 @@
 			//   3 => $Clr
 			// );
 
- 		$json_data = json_encode($arrayHole);
+
+ 			$json_data = json_encode($arrayHole);
+
 	        $fd = fopen("dataHole.json", 'w') or die("не удалось создать файл");
 			$str = $json_data;
 			fwrite($fd, $str);
 			fclose($fd);
+
+
+
 
 			$queryDx ="SELECT DISTINCT  `hole`.`x` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
 			$resultDx = mysqli_query($link, $queryDx) or die("Ошибка 4 - Нет связи с таблицами hole" . mysqli_error($link));
@@ -138,7 +152,6 @@
 					};	
 				};	
 			};
-
 
 
 			$queryDy ="SELECT DISTINCT  `hole`.`y` FROM `hole`, `field` WHERE `hole`.`nfield`=".$nfield;
@@ -168,30 +181,25 @@
  			$el2=2;
 
 function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
-//$block_perc[2] [2] [2] [$el] = 1;
-//echo "123";
-//return $block_perc[$x] [$y] [$z][$el];
+
+
 // Проход по Х 				$block_perc[$xx] [$y] [$z] [$el] = $kk;
  			for ($y=0; $y<=$w; $y=$y+$dy)
+			//$y=5;$z=0;
  			{
  				for ($z=0; $z<$d; $z=$z+$dz)
  				{
- 					for ($x=0; $x<=$l-$dx; $x=$x+$dx)
+ 					for ($x=0; $x<=$l-$dx; $x=$x+$dx) //
  				    {
- 					
-						$dp = ($block_perc[$x+$dx] [$y] [$z] [$el] - $block_perc[$x] [$y] [$z] [$el])/$dx; // приращение
+ 						
+						$dp = ($block_perc[$x+$dx] [$y] [$z] [$el] - $block_perc[$x] [$y] [$z] [$el]) / $dx; // приращение
+ 						$kk=$block_perc[$x] [$y] [$z] [$el]+$dp;
  						for ($xx=$x+$unitb; $xx<=$x+$dx-$unitb; $xx=$xx+$unitb)
  						{
- 							$kk=$block_perc[$xx-$unitb] [$y] [$z] [$el] + $dp;
-							if($el == 0) 
-							{
-								$block_perc[$xx] [$y] [$z] [$el] = round($kk);
-							} else 
-							{
-								$block_perc[$xx] [$y] [$z] [$el] = $kk;
-							};
+							$block_perc[$xx] [$y] [$z] [$el] = $kk;
+							$kk= $kk + $dp;
   						}; 
- 						
+
  					};	
  								
  				};
@@ -200,7 +208,8 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 
 
  			// // // Проход по Y 				
- 			for ($x=0; $x<=$l; $x=$x+$unitb)
+
+ 			 for ($x=0; $x<=$l; $x=$x+$unitb)
  			{
  				for ($z=0; $z<$d; $z=$z+$dz)
  				{
@@ -208,16 +217,15 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  				    {
  					
  						$dp = ($block_perc[$x] [$y+$dy] [$z] [$el] - $block_perc[$x] [$y] [$z] [$el])/$dy; // приращение
-
+ 						$kk=$block_perc[$x] [$y] [$z] [$el]+$dp;
  						for ($yy=$y+$unitb; $yy<=$y+$dy-$unitb; $yy=$yy+$unitb)
  						{
- 								$kk=$block_perc[$x] [$yy-$unitb] [$z] [$el] + $dp;
+ 	
  								//echo $kk,' ';
- 								if($el == 0) {
- 									$block_perc[$x] [$yy] [$z] [$el] = round($kk);
- 								} else {
- 									$block_perc[$x] [$yy] [$z] [$el] = $kk;
- 								};
+ 								$block_perc[$x] [$yy] [$z] [$el] = $kk;
+
+ 								$kk= $kk + $dp;
+
  								
  								
  						}; 
@@ -229,9 +237,32 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 
  };
  			
-        
-		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb, $el);
-		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb,$el2);
+
+
+		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb, 1); // po approksimacia visotam
+ 		
+ 		for ($x=0; $x <=$l; $x=$x+$unitb) 
+		{ 
+ 			for ($y=0; $y <=$w; $y=$y+$unitb)
+			{
+ 				for ($z=0; $z <$d; $z=$z+$unitb)
+				{
+ 					if ($z>= round($block_perc[$x] [$y] [0] [1]))
+ 					{ 
+ 					    $block_perc[$x] [$y] [$z] [0] = 1;///Topo Основа
+ 					 };
+
+ 				};
+ 			};
+ 		};
+ 		foo($block_perc, $w, $d, $l,$dx,$dy,$dz,$unitb, 2); 
+
+
+
+
+
+
+
 
 		//Создание высот топоосновы
 		for ($x=0; $x<=$l; $x=$x+$unitb)
@@ -239,12 +270,16 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  				for ($y=0; $y<=$w; $y=$y+$unitb)
  				{
  					$topoBase[$x][$y] = 0;
- 					for ($z=$unitb; $z<$d; $z=$z+$unitb)
+
+ 					//for ($z=$unitb; $z<=$d; $z=$z+$unitb)
  				    {
  						//echo $block_perc[$x] [$y] [$z] [0];
- 						if($block_perc[$x] [$y] [$z-$unitb] [0] == 0 && $block_perc[$x] [$y] [$z] [0] == 1) {
+ 						//if($block_perc[$x] [$y] [$z-$unitb] [0] > 0.5)
  							
- 							$topoBase[$x][$y] = $z;
+ 						 {
+ 							
+ 							$topoBase[$x][$y] = round($block_perc[$x] [$y] [0] [1]);
+ 							//break;
  						};
  						
  					};	
@@ -259,6 +294,9 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 			fwrite($fdTop, $strTop);
 			fclose($fdTop);
 
+		
+
+
 // */ 
 		$queryClr = "SELECT DISTINCT clr from `hole`, `core`, `linkcm`, `mine` where `hole`.`nfield` =".$nfield." and `hole`.`idhole` = `core`.`idhole` and `core`.`idcore` = `linkcm`.`idcore` and `linkcm`.`idmine` = `mine`.`idmine`";
 
@@ -266,7 +304,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 		$clrArr = mysqli_fetch_array($resultClr);
 		$Clr = $clrArr['clr'];
 			//echo $Clr;
-		
+
 			$arrayData = array(
 			  2 => $block_perc,
 			  3 => $Clr
@@ -276,9 +314,10 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 			$str = $json_data;
 			fwrite($fd, $str);
 			fclose($fd);
+
+
 			
 		$c=2;	
-
 
 		// запись блоков в таблицу
  		for ($x=0; $x <=$l; ($x=$x+$unitb)) 

@@ -86,6 +86,7 @@ $_SESSION['r'] = $doc;
                 
                 <form method="POST" action="php/upload.php" enctype="multipart/form-data" id="upload_form">
                 <input class="btn xs " id="btn_add_file" type="file" name="filename" >
+
                 </form>
                                                 
                 </td>

@@ -43,6 +43,7 @@ $output .= '
           <div class="field-core_table-close"></div>  
            <table class="table table-bordered">
            <thead class="thead-dark">
+
                 <tr>  
                     <!-- <th >Id</th>-->
                      <th >Номер керна</th>

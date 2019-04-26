@@ -36,8 +36,13 @@ function init() {
 
         renderer = new THREE.WebGLRenderer({
             //Сглаживание
-            antialias: true
+
+            antialias: true,
+            alpha: true //Для прозрачности
         });
+
+        //Для прозрачности
+        //renderer.sortObjects = false
 
         //Высота
         height = window.innerHeight-(window.innerHeight/10);
@@ -83,8 +88,9 @@ function init() {
         //Функция отрисовки сетки
     (function grid(size) {
         var gridXZ = new THREE.GridHelper(gridL, size/ub);
-        //Функция проверки на чётность длины модели
 
+
+        //Функция проверки на чётность длины модели
         const even = n => !(n % 2);
         //Позиция сетки
         var gPositionY = ub/2;//Смещение по высоте
@@ -161,7 +167,8 @@ function draw(x,y,z,color,pi,ub) {
 
         //Материал для рисования геометрических фигур
         //Задаем цвет, прозрачность
-        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: pi/100});
+
+        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: false, opacity: pi/100});
 
         // События при изменении размера окна
         THREEx.WindowResize(renderer, camera);
@@ -198,10 +205,11 @@ function initLight() {
 
 //Создаем орбиту вращения куба
 function createOrbit() {
-
     control = new THREE.OrbitControls(camera, renderer.domElement);
     control.enableZoom = true
-    control.update();
+    control.maxDistance = 500
+    control.update()
+
 
 }
 //Создаем функцию рендера
@@ -271,9 +279,11 @@ function render() {
               .then(
                 function(result) {
                         let ResultArr = JSON.parse(result);
-                            console.log(ResultArr[2]);
+
+                            // console.log(ResultArr[2]);
                             console.log(ResultArr);
                             let perc = 0; //Минимальный процент отображения ПИ
+                            var c;
                           for (var x=0; x<=l; x=x+ub) {
                                         //Проходимся циклом по ширине
                                         for (var y=0; y<=w; y=y+ub) {
@@ -282,18 +292,22 @@ function render() {
                                                 //Цвет
                                               
                                                var dd = ResultArr[2][x][y][z];
-                                                var c = 0xFFFFFF;
+
+                                                //var c = 0x8A6642;
+                                                c= '#a98e14'; // Sand color
                                                 var xxx=0;
                                                 xxx=0;
 
                                                 var zzzzz=dd[0];
 
+                                                // console.log('BOT',dd[0])    
                                                 
                                                if(zzzzz==1){
                                                 //c = 0xc6c44d;
                                                 xxx=25;
                                                 if(dd[2]>perc) {
-                                                        c = ResultArr[3];
+
+                                                        c= ResultArr[3];
                                                         xxx=dd[2];
                                                      //Отрисовать
                                                     //}

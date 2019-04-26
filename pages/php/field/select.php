@@ -22,6 +22,7 @@
                      <th scope="col">Документы</th>
                      <th scope="col">3д Модель</th>
                      <th scope="col">Добавить</th>
+
                 </tr>
                  </thead>
                  <tbody>';
@@ -49,9 +50,15 @@
          <td class="l" data-id6="'.$row["id"].'" data-label="Длина" contenteditable>'.$row["l"].'</td>
          <td class="d" data-id7="'.$row["id"].'" data-label="Глубина" contenteditable>'.$row["d"].'</td>
          <td class="w" data-id8="'.$row["id"].'" data-label="Ширина" contenteditable>'.$row["w"].'</td>
+<<<<<<< HEAD
          <td class="hole" data-id8="'.$row["id"].'" data-label="Скважины" ><a href="/pages/chink/chink.php?sel1='.$row["namefield"].'"><div name="btn_hole" id="btn_add_hole" data-id="'.$row["id"].'" class="hole_watch"></div></a></td>
          <td class="documents" data-id8="'.$row["id"].'" data-label="Документы" ><div name="btn_doc" class="btn_doc"></div></td>
          <td class="model" data-id8="'.$row["id"].'" data-label="3д Модель" ><a href="/pages/3dmodel/3dmodel.php?sel1='.$row["namefield"].'"><div name="sel1" id="btn_doc" ></div></a></td>
+=======
+         <td class="hole" data-id8="'.$row["id"].'" data-label="Скважины" ><a href="/pages/chink/chink.php?sel1='.$row["namefield"].'"><button type="button" name="btn_hole" id="btn_add_hole" data-id="'.$row["id"].'" class="btn btn-xs btn-success">Просмотр</button></a></td>
+         <td class="documents" data-id8="'.$row["id"].'" data-label="Документы" ><button type="button" name="btn_doc"  class="btn btn-xs btn-success btn_doc">Редактировать</button></td>
+         <td class="model" data-id8="'.$row["id"].'" data-label="3д Модель" ><a href="/pages/3dmodel/3dmodel.php?sel1='.$row["namefield"].'"><button type="button" name="sel1" id="btn_doc" class="btn btn-xs btn-success">Просмотр</button></a></td>
+>>>>>>> work
          <td data-label="Удалить"><button type="button" name="delete_btn" data-id9="'.$row["id"].'" class="btn btn-xs btn-danger btn_delete">x</button></td>
     </tr>
 

@@ -302,4 +302,5 @@ body {
 .contact:hover {
   transform: scale(1) !important;
   box-shadow: none;
+
 }

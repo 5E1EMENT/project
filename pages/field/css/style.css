@@ -60,6 +60,7 @@ body {
 }
 .hole {
     text-align: center;
+
 }
 .mainscreen-logo {
     width: 40px;
@@ -78,8 +79,8 @@ body {
 #live_data_doc {
     position: relative;
     display: none;
-
     margin-top: 20px;
+
 }
 .live_data-close{
     display: block;
