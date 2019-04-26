@@ -165,7 +165,7 @@ function draw(x,y,z,color,pi,ub) {
 
         //Материал для рисования геометрических фигур
         //Задаем цвет, прозрачность
-        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: true, opacity: pi/100});
+        let cubeMat = new THREE.MeshBasicMaterial({color: color, transparent: false, opacity: pi/100});
 
         // События при изменении размера окна
         THREEx.WindowResize(renderer, camera);
@@ -181,10 +181,10 @@ function draw(x,y,z,color,pi,ub) {
         scene.add(cube);
 
         //Цвет обводки
-        // var hex = 0x000000;
-        // var bbox = new THREE.BoundingBoxHelper(cube, hex);
-        // bbox.update();
-        // scene.add(bbox);
+        var hex = 0x000000;
+        var bbox = new THREE.BoundingBoxHelper(cube, hex);
+        bbox.update();
+        scene.add(bbox);
         //После выполнения отрисовки, убираем прелоадер
         loadingArea.removeClass('active-loader');
 
@@ -276,9 +276,10 @@ function render() {
               .then(
                 function(result) {
                         let ResultArr = JSON.parse(result);
-                            console.log(ResultArr[2]);
+                            // console.log(ResultArr[2]);
                             console.log(ResultArr);
                             let perc = 0; //Минимальный процент отображения ПИ
+                            var c;
                           for (var x=0; x<=l; x=x+ub) {
                                         //Проходимся циклом по ширине
                                         for (var y=0; y<=w; y=y+ub) {
@@ -287,18 +288,19 @@ function render() {
                                                 //Цвет
                                               
                                                var dd = ResultArr[2][x][y][z];
-                                                var c = 0x8A6642;
+                                                //var c = 0x8A6642;
+                                                c= '#a98e14'; // Sand color
                                                 var xxx=0;
                                                 xxx=0;
 
                                                 var zzzzz=dd[0];
-
+                                                // console.log('BOT',dd[0])    
                                                 
                                                if(zzzzz==1){
                                                 //c = 0xc6c44d;
                                                 xxx=25;
                                                 if(dd[2]>perc) {
-                                                        c = ResultArr[3];
+                                                        c= ResultArr[3];
                                                         xxx=dd[2];
                                                      //Отрисовать
                                                     //}
