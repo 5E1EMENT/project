@@ -20,3 +20,14 @@ font-weight: normal;
 font-style: normal;
 
 }
+@font-face{
+
+    font-family: 'Lato Heavy ';
+
+    src: url('../fonts/latobold.woff') ;
+
+    font-weight: normal;
+
+    font-style: normal;
+
+}

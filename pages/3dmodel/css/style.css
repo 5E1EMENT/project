@@ -78,7 +78,7 @@ select[name="sel1"] {
 .title {
     text-transform: uppercase;
     font-weight: bold;
-    font-family: Lato;
+    font-family: 'Lato', sans-serif;
     color: #fff;
 
 
@@ -124,6 +124,14 @@ select[name="sel1"] {
     border: none !important;
 }
 
+/* TopA*/
+.wrapper-topa {
+
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 /* Preloader */
 

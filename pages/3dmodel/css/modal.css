@@ -23,7 +23,7 @@
     justify-content: center;
     position: fixed;
     margin: 0 auto;
-    background-color: #777;
+    background:white;
     width: 600px;
     max-width: 75rem;
     min-height: 20rem;
@@ -56,8 +56,8 @@
 .close:before,.close:after {
     position: absolute;
     content: '';
-    width: 2px;
-    height: 17px;
+    width: 3px;
+    height: 25px;
     background: white;
     right: 50%;
 
@@ -73,7 +73,8 @@
     margin-top: 20px;
 }
 .form_model {
-
+    font-size: 18px;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;

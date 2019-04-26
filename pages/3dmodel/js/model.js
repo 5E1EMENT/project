@@ -7,7 +7,7 @@ var container = document.getElementById( 'scene' );
 
 //Функция построения модели !!!!
 var buildModel = function (l,d,w,ub) {
-
+    container.style.borderTop = '2px solid #212529';
 //Считываем параметры с ячеек таблицы
     l = parseInt($(this).closest('.table-row').find('.l').attr('data-l'));
     d = parseInt($(this).closest('.table-row').find('.d').attr('data-d'));
@@ -36,9 +36,8 @@ function init() {
 
         renderer = new THREE.WebGLRenderer({
             //Сглаживание
-
             antialias: true,
-            alpha: true //Для прозрачности
+            alpha: false //Для прозрачности
         });
 
         //Для прозрачности

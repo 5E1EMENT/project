@@ -74,14 +74,14 @@ window.onload = function(){
     });
 
     btn.onclick = function() {
-        p.open('<form action="/pages/3dmodel/3dmodel.php" name="add1" class="form_model" id="form_model" method="GET">' +
-            'Имя модели   <input type="text" name="namemod"/> <br>' +
-            'Номер модели   <input type="text" name="nmod"/> <br>' +
-            'Высота <input type="text" name="d"/><br>' +
-            'Длина <input type="text" name="l"/><br>' +
-            'Ширина  <input type="text" name="w"/><br>' +
-            'Размер блока <input type="text" name="ub"/><br>'+
-            '<button type="submit" class="btn btn-xs btn-success"id="modal_submit" name="modal_add" >Добавить запись</button> <br>' +
+        p.open('<form action="/pages/3dmodel/3dmodel.php" name="add1" class="form_model form-group" id="form_model" method="GET">' +
+            'Имя модели   <input class="form-control" type="text" name="namemod"/> ' +
+            'Номер модели   <input class="form-control" type="text" name="nmod"/> ' +
+            'Высота <input class="form-control" type="text" name="d"/>' +
+            'Длина <input class="form-control" type="text" name="l"/>' +
+            'Ширина  <input class="form-control" type="text" name="w"/>' +
+            'Размер блока <input class="form-control" type="text" name="ub"/><br>'+
+            '<button type="submit" class="btn btn-xs btn-primary"id="modal_submit" name="modal_add" >Добавить запись</button> <br>' +
             '</form>');
         //var form = document.querySelector('обёртка для сверстанной формы');
         //для обертки дать display:none;

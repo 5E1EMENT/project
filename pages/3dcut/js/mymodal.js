@@ -76,13 +76,13 @@ window.onload = function(){
 
     btn.onclick = function() {
         console.log(1);
-        p.open('<form action="/pages/3dcut/3dcut.php" name="add1" class="form_cut" id="form_cut" method="GET">' +
-            'Имя разреза или карты   <input type="text" name="namemap"/> ' +
-            'Разрез по X   <input type="radio" name="rbx"/> ' +
-            'Разрез по Y <input type="radio" name="rby"/>' +
-            'Карта по Z   <input type="radio" name="rbz"/>' +
-            'Значение координаты <input type="text" name="coordinate">'+
-            '<button type="submit" class="btn btn-xs btn-success" id="cut_submit" name="cut_add" >Подтвердить</button> ' +
+        p.open('<form action="/pages/3dcut/3dcut.php" name="add1" class="form_cut form-group" id="form_cut" method="GET">' +
+            'Имя разреза или карты   <input class="form-control" type="text" name="namemap"/> ' +
+            'Разрез по X   <input class="form-control" type="radio" name="rbx"/> ' +
+            'Разрез по Y <input class="form-control" type="radio" name="rby"/>' +
+            'Карта по Z   <input class="form-control" type="radio" name="rbz"/>' +
+            'Значение координаты <input class="form-control" type="text" name="coordinate"><br>'+
+            '<button type="submit" class="btn btn-xs btn-primary" id="cut_submit" name="cut_add" >Подтвердить</button> ' +
             '</form>');
         //var form = document.querySelector('обёртка для сверстанной формы');
         //для обертки дать display:none;

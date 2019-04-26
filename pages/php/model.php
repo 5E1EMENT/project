@@ -347,36 +347,34 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
 
  // Dell model
 
- for ($i=0; $i<1000; ++$i)
- 	{
-       $temp='del_'.$i;
- 	  if (isset($_GET[$temp])&&!empty($_GET[$temp]))
- 	  {
- 		   
- 		$query ="SELECT DISTINCT nfield, namefield  FROM field";
- 		$result = mysqli_query($link, $query) or die("Ошибка 2 - Нет связи с таблицей nfield" . mysqli_error($link));
- 		$s= $_SESSION['nf'];
- 		//echo "S=", $s,'<br>';
+for ($i=0; $i<1000; ++$i)
+{
+    $temp='del_'.$i;
+    if (isset($_GET[$temp])&&!empty($_GET[$temp]))
+    {
 
- 		while ($row = mysqli_fetch_array($result))
- 		{
- 			if ($row['namefield'] == $_SESSION['nf'])
- 			{
- 				$nfield=$row['nfield'];
- 			};
- 		};
-
- 		   //echo "nmod=",$i, "nfield=",$nfield;
-           $query = "DELETE FROM `model` WHERE `nmod`=".$i." and `nfield`=".$nfield;
-           mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
-		   $query = "DELETE FROM `blockmodel` WHERE `nmod`=".$i." and `nfield`=".$nfield;
-           mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
- 		};
-
- 	};
+        $query ="SELECT DISTINCT nfield, namefield  FROM field";
+        $result = mysqli_query($link, $query) or die("Ошибка 2 - Нет связи с таблицей nfield" . mysqli_error($link));
+        $s= $_SESSION['nf'];
+        //echo "S=", $s,'<br>';
+        while ($row = mysqli_fetch_array($result))
+        {
+            if ($row['namefield'] == $_SESSION['nf'])
+            {
+                $nfield=$row['nfield'];
+            };
+        };
+        //echo "nmod=",$i, "nfield=",$nfield;
+        $query = "DELETE FROM `model` WHERE `nmod`=".$i." and `nfield`=".$nfield;
+        mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
+        $query = "DELETE FROM `blockmodel` WHERE `nmod`=".$i." and `nfield`=".$nfield;
+        mysqli_query($link, $query) or die ("ERROR!" . mysqli_error($link));
+    };
+};
 
 
- 	// выполняем операции с базой данных по выводу списка моделей по выбранному месторождению
+
+// выполняем операции с базой данных по выводу списка моделей по выбранному месторождению
  	if (isset($_GET['sel1']) || isset($_SESSION['nf']))
  	{
  		if (isset($_GET['sel1']))
@@ -400,7 +398,8 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  // error_reporting(E_ALL);
 
  		$table = "
- 		<div class='table table-responsive model-table'> 
+ 		<div class='table table-responsive model-table'>
+ 		<form action='3dmodel.php' method='GET' id='model-form' class='model-form'> 
  		<table class='table-bordered'> 
  		<thead class='thead-dark'>
  		<tr>
@@ -436,7 +435,7 @@ function foo(&$block_perc,$w, $d, $l,$dx,$dy,$dz,$unitb,$el) {
  			$table.="<td><input type='submit' class='btn btn-xs btn-danger btn_delete' name='del_".$row['nmod']."' value='X'/> </td>";
  		};
  	$table.= "</tbody></table>";
- 	$table.="<input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
+ 	$table.="</form><input type='submit' class='btn btn-lg btn-success btn_add btn_add_model' name='add' id='btn_add_model' value='Добавить новую модель'/></div>";
  	echo $table;
  	
 

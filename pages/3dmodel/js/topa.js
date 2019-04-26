@@ -10,6 +10,7 @@ topaBtn.addEventListener('click', function () {
 
     //Инициализируем канвас
 	var topaWrapper = document.querySelector('.wrapper-topa');
+	topaWrapper.style.borderTop = '2px solid #212529';
 	var topa = document.createElement('canvas');
 	var k = 500 / l;
 	topa.setAttribute('width',l * k + 10 + 'px');//x 

@@ -76,16 +76,16 @@ window.onload = function(){
 
     btn.onclick = function() {
         console.log(1);
-        p.open('<form action="/pages/chink/chink.php" class="form_chink" id="form_chink" method="GET">' +
-            'Номер Месторождения<input type="text" name="nfield"required/> <br>' +
-            'Номер Скважины<input type="text" name="nhole" required/> <br>' +
-            'Координата X<input type="text" name="x"required/> <br>' +
-            'Координата Y<input type="text" name="y"required/> <br>' +
-            'Координата Z<input type="text" name="z"required/> <br>' +
-            'Угол Альфа<input type="text" name="a"required/> <br> ' +
-            'Угол Бета<input type="text" name="b"required/> <br> ' +
-            'Глубина (d)<input type="text" name="d" required/> <br>' +
-            '<button class="btn btn-xs btn-success" type="submit" id="chink_submit" name="chink_add" >Добавить запись</button> <br>' +
+        p.open('<form action="/pages/chink/chink.php" class="form_chink form-group" id="form_chink" method="GET">' +
+            'Номер Месторождения<input class="form-control" type="text" name="nfield"required/> ' +
+            'Номер Скважины<input class="form-control" type="text" name="nhole" required/> ' +
+            'Координата X<input class="form-control" type="text" name="x"required/> ' +
+            'Координата Y<input class="form-control" type="text" name="y"required/> ' +
+            'Координата Z<input class="form-control" type="text" name="z"required/> ' +
+            'Угол Альфа<input class="form-control" type="text" name="a"required/>  ' +
+            'Угол Бета<input class="form-control" type="text" name="b"required/>  ' +
+            'Глубина (d)<input class="form-control" type="text" name="d" required/> <br>' +
+            '<button class="btn btn-xs btn-primary" type="submit" id="chink_submit" name="chink_add" >Добавить запись</button> <br>' +
             '</form>');
         //var form = document.querySelector('обёртка для сверстанной формы');
         //для обертки дать display:none;

@@ -26,7 +26,7 @@
 //		  $delete_records = $rows - 10;
 //		  $delete_sql = "DELETE FROM field LIMIT $delete_records";
 //		  mysqli_query($connect, $delete_sql);
-//	  }
+//	  }<input type="color" value="'.$row["clr"].'">
       while($row = mysqli_fetch_array($result))  
       {  
            $output .= '
