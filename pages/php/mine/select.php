@@ -36,7 +36,7 @@
          <!--<td class="nfield" data-id1="'.$row["id"].'"data-label="№ месторождения" data-label="ID" contenteditable>'.$row["nfield"].'</td>-->
 
          <td class="name" data-id1="'.$row["idmine"].'" data-label="Название полезного ископаемого" contenteditable>'.$row["name"].'</td>
-         <td class="clr" data-id2="'.$row["idmine"].'" data-label="Цвет отображения" contenteditable>'.$row["clr"].'</td>
+         <td class="clr" data-id2="'.$row["idmine"].'" data-label="Цвет отображения" ><input type="color" value="'.$row["clr"].'"></td>
          <td data-label="Удалить"><button type="button" name="delete_btn" data-id3="'.$row["idmine"].'" class="btn btn-xs btn-danger btn_delete_mine">x</button></td>
     </tr>
 

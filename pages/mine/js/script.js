@@ -100,9 +100,11 @@ $(document).ready(function(){
         edit_data(id,last_name, "name");
         console.log(id);
     });
-    $(document).on('blur', '.clr', function(){
-        var id = $(this).data("id2");
-        var last_name = $(this).text();
+    $(document).on('change', '.clr input', function(e){
+
+        var id = $(this).parent().data("id2");
+        var last_name = e.target.value;
+        console.log(id, last_name);
         edit_data(id,last_name, "clr");
     });
 
